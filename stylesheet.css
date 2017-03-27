@@ -1,0 +1,77 @@
+/*TABLE FOR SEARCH TEST*/
+table {
+	width: 100%;
+}
+tr:nth-child(odd) {
+	background-color: #000;
+	color: #fff;
+}
+#first tr:nth-child(odd) {
+	background-color: green;
+	color: #fff;
+	width: 100%;
+}
+/*END TABLE FOR SEARCH TEST*/
+
+td {
+	border: solid 1px #000;
+	padding: 5px 10px;
+	font-weight: bold;
+	width: 25%;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	width: 100%;
+}
+#pageHeader, #productsControlNavigation {
+	box-sizing: border-box;
+	width: 100%;
+}
+#pageHeader {
+	padding: 20px 50px;
+}
+#pageHeader h1 {
+	float: left;
+}
+#pageHeader h1 a {
+	color: #000;	
+	text-decoration: none;
+}
+#pageHeader h2 {
+	float: right;
+}
+#pageHeader:before, #pageHeader:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+#productsControlNavigation {
+	background-color: #665533;
+}
+#productsControlNavigation ul {
+	list-style: none;
+}
+#productsControlNavigation ul li {
+	display: inline-block;
+}
+#productsControlNavigation ul li a {	
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	padding: 20px 0;
+	font-weight: bold;
+	text-align: center;
+	width: 200px;	
+}
+#productsControlNavigation ul li a:hover {
+	background-color: #660000;
+}
+#productsControlNavigation ul li:last-child {
+	float: right;
+}
+#productsControlNavigation ul li:last-child a {
+	width: 100px;
+}
