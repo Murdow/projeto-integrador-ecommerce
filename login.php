@@ -1,7 +1,8 @@
 <?php
 	include "functions.php";
 	logOut();
-	insertItem();
+	if(isset($_SESSION['user'])) header("Location: dashboard.php");
+	newUser();
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,7 +61,7 @@
 			<input type="submit" value="Log-in">
 		</p>
 
-		<a href="index.html" id="cadastroLink">Cadastrar</a>
+		<a href="cadastro.php" id="cadastroLink">Cadastrar</a>
 	</form>
 </body>
 </html>

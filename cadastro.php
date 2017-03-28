@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	if(isset($_SESSION['user'])) header("Location: dashboard.php");	
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +22,20 @@
 	form input {
 		float: right;
 	}
+	p {
+		margin-bottom: 30px;
+		position: relative;
+	}
 	p:before, p:after {
 		content: "";
 		display: table;
 		clear: both;
+	}
+	.fieldError {
+		color: #ff0000;
+		position: absolute;
+		bottom: -20px;
+		right: 0;
 	}
 	form h1 {
 		text-align: center;
@@ -35,6 +49,7 @@
 		<p>
 			<label>Login:</label>
 			<input type="text" name="login">
+			<?php if(isset($_GET['username']) && ($_GET['username'] == "taken")) echo "<span class='fieldError'>Usuário já existe</span>"; ?>
 		</p>
 		<p>
 			<label>Password:</label>

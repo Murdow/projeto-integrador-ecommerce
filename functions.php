@@ -1,17 +1,22 @@
 <?php	
 	session_start();
 
-	function insertItem() {
+	function newUser() {
 		if($db = odbc_connect("pidsn", "", "")) {
-			echo "Conectou!<br>";
-
+			
 			$login = $_POST['login'];
 			$password = $_POST['password'];
 			$email = $_POST['email'];
 			$name = $_POST['name'];
 			
-			//INSERT
-			if(odbc_exec($db, "INSERT INTO usuario
+			$query = odbc_exec($db, "SELECT login FROM usuario");
+			while($result = odbc_fetch_array($query)) {
+				if($login == $result['login']) {
+					header("Location: cadastro.php?username=taken");
+				}				
+			}	
+			
+			odbc_exec($db, "INSERT INTO usuario
 								(login, 
 								senha,
 								email,
@@ -20,13 +25,10 @@
 								('$login',
 								'$password',
 								'$email',
-								'$name')")) {
-									echo "Usuário cadastrado com sucesso!<br>";
-								}
-			else echo "Erro ao cadastrar usuário<br>";
+								'$name')");	
 			
 		}
-		else echo "Erro ao conectar ao banco!";
+		else echo "Erro ao cadastrar usuário!";
 	}
 
 	function searchItem() {
@@ -107,7 +109,6 @@
 	function getSessionUserName() {
 		return $_SESSION['user'];
 	}
-
 	function checkAction() {
 		$action = $_GET['action'];
 
