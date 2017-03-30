@@ -1,7 +1,3 @@
-<?php
-	session_start();
-	if(isset($_SESSION['user'])) header("Location: dashboard.php");	
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,12 +40,12 @@
 </style>
 </head>
 <body>
-	<form method="POST" action="login.php">
+	<form method="POST">
 		<h1>Cadastro</h1>
 		<p>
 			<label>Login:</label>
 			<input type="text" name="login">
-			<?php if(isset($_GET['username']) && ($_GET['username'] == "taken")) echo "<span class='fieldError'>Usuário já existe</span>"; ?>
+			<span class='fieldError'><?php echo $errorMsg; ?></span>
 		</p>
 		<p>
 			<label>Password:</label>

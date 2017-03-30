@@ -1,32 +1,34 @@
 <?php	
 	session_start();
+	$errorMsg = '';
 
 	function newUser() {
 		if($db = odbc_connect("pidsn", "", "")) {
 			
-			$login = $_POST['login'];
-			$password = $_POST['password'];
-			$email = $_POST['email'];
-			$name = $_POST['name'];
-			
-			$query = odbc_exec($db, "SELECT login FROM usuario");
-			while($result = odbc_fetch_array($query)) {
-				if($login == $result['login']) {
-					header("Location: cadastro.php?username=taken");
-				}				
-			}	
-			
-			odbc_exec($db, "INSERT INTO usuario
-								(login, 
-								senha,
-								email,
-								nome)
-							VALUES 
-								('$login',
-								'$password',
-								'$email',
-								'$name')");	
-			
+			$login = checkFormInputs('login');
+			$password = checkFormInputs('password');
+			$email = checkFormInputs('email');
+			$name = checkFormInputs('name');
+
+			$query = odbc_exec($db, "SELECT login FROM usuario WHERE login = '$login'");
+			$result = odbc_fetch_array($query);
+
+			if(!empty($result['login'])) {
+				$GLOBALS['errorMsg'] = "Esse login já está cadastrado!";	
+			}			
+			else {
+				odbc_exec($db, "INSERT INTO usuario
+									(login, 
+									senha,
+									email,
+									nome)
+								VALUES 
+									('$login',
+									'$password',
+									'$email',
+									'$name')");	
+				header("Location: ../login/index.php");
+			}
 		}
 		else echo "Erro ao cadastrar usuário!";
 	}
@@ -81,20 +83,19 @@
 	
 	function logIn() {
 		if(!isset($_SESSION['user'])) {
-			if(isset($_POST['login'])) $login = $_POST['login'];
-			if(isset($_POST['password'])) $password = $_POST['password'];
+			if(isset($_POST['login'])) $login = checkFormInputs('login');
+			if(isset($_POST['password'])) $password = checkFormInputs('password');
 			if($db = odbc_connect("pidsn", "", "")) {
-				$query = odbc_exec($db, "SELECT * FROM usuario");
-				$isLoggedIn = false;
-				while($result = odbc_fetch_array($query)) {
-					if(($login == $result['login']) && ($password == $result['senha'])) {
-						$isLoggedIn = true;
-						$_SESSION['user'] = $result['nome'];
-						break;
-					}				
-				}				
+				$query = odbc_exec($db, "SELECT nome FROM usuario WHERE login = '$login' AND senha = '$password'");
+				
+				$result = odbc_fetch_array($query);
+
+				if(!empty($result['nome'])) {
+					$_SESSION['user'] = $result['nome'];
+					header("Location: ../dashboard/index.php");
+				}
+				else $GLOBALS['errorMsg'] = "Email ou Senha Inválidos!";				
 			}
-			if(!$isLoggedIn) header("Location: login.php");
 		}		
 	}
 
@@ -105,7 +106,9 @@
 				session_destroy();
 		}
 	}
-
+	function checkFormInputs($formText) {
+		return str_replace('"','', str_replace("'",'', str_replace(';','', str_replace("\\",'', $_POST[$formText]))));
+	}
 	function getSessionUserName() {
 		return $_SESSION['user'];
 	}

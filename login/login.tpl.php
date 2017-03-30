@@ -1,9 +1,3 @@
-<?php
-	include "functions.php";
-	logOut();
-	if(isset($_SESSION['user'])) header("Location: dashboard.php");
-	newUser();
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +27,7 @@
 
 		form h1 {
 			text-align: center;
-			margin-bottom: 30px;
+			margin-bottom: 40px;
 		}
 		form input[type=submit] {
 			margin-bottom: 50px;
@@ -44,11 +38,17 @@
 			bottom: 10px;
 			right: 10px;
 		}
+		.errorMsg {
+			color: #ff1100;
+			margin: 0 auto;
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
-	<form method="POST" action="dashboard.php">
+	<form method="POST">
 		<h1>Log-In</h1>
+		<p class="errorMsg"><?php echo $errorMsg; ?></p>
 		<p>
 			<label>Login:</label>
 			<input type="text" name="login" required>
@@ -61,7 +61,7 @@
 			<input type="submit" value="Log-in">
 		</p>
 
-		<a href="cadastro.php" id="cadastroLink">Cadastrar</a>
+		<a href="../cadastro/index.php" id="cadastroLink">Cadastrar</a>
 	</form>
 </body>
 </html>
