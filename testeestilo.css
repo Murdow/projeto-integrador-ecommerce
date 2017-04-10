@@ -1,0 +1,152 @@
+/*TABLE FOR SEARCH TEST*/
+table {
+	width: 90%;
+    margin: 3% auto auto 5%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.6);
+    
+}
+tr:nth-child(odd) {
+	background-color: #f8f8f8;
+	color: rgb(0, 0, 0);
+    
+}
+
+/*END TABLE FOR SEARCH TEST*/
+
+th {
+    
+    font-size: 110%;
+    font-weight: bold;
+    
+}
+
+.bold{
+    font-weight: bold;
+    background-color: #f8f8f8;
+    width: 15%;
+}
+
+.textocell{
+    text-align: center;
+}
+
+td, th {
+	border: solid 1px rgba(0, 0, 0, 0.1);
+	padding: 5px 10px;
+	font-family: Roboto;
+}
+* {
+	margin: 0;
+	padding: 0;
+   
+}
+#wrapper {
+	width: 100%;
+}
+#pageHeader, #productsControlNavigation {
+	box-sizing: border-box;
+	width: 100%;
+}
+#pageHeader {
+	padding: 20px 50px;
+}
+#pageHeader h1 {
+	float: left;
+    
+}
+#pageHeader h1 a {
+	color: #000;	
+	text-decoration: none;
+    font-family: Roboto;
+}
+#pageHeader h2 {
+	float: right;
+    font-family: Roboto;
+}
+#pageHeader:before, #pageHeader:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+#productsControlNavigation {
+	background-color: #665533;
+}
+#productsControlNavigation ul {
+	list-style: none;
+}
+#productsControlNavigation ul li {
+	display: inline-block;
+    font-family: Roboto;
+}
+#productsControlNavigation ul li a {	
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	padding: 20px 0;
+	font-weight: bold;
+	text-align: center;
+	width: 200px;	
+}
+#productsControlNavigation ul li a:hover {
+	background-color: #660000;
+}
+#productsControlNavigation ul li:last-child {
+	float: right;
+}
+#productsControlNavigation ul li:last-child a {
+	width: 100px;
+}
+
+.edita, .deleta, .detalhes {
+    width: 80px;
+    height: 25px;
+    border-radius: 4px;
+    color:white;
+    margin-top: 2%;
+    margin-right: 2%;
+    float: left;
+    font-weight: bold;
+}
+
+
+#acoes{
+    width: 35%;
+}
+.edita {
+    background-color: #48aaff;
+}
+
+.edita:hover {
+    background-color: #236ba8;
+}
+
+.deleta {
+    background-color: #ef2424;
+}
+
+.deleta:hover {
+    background-color: #881313;
+}
+
+.detalhes {
+    background-color: #0e5fe0;
+    
+}
+
+.detalhes:hover {
+    background-color: #081996;
+}
+
+article {
+    width: 80%;
+    margin: 3% auto auto 10%;
+    
+}
+.bannerdash {
+    width: 29%;
+    margin: auto 2% auto 2%;
+    height: 500px;
+    border:1px solid black;
+    float: left;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+}

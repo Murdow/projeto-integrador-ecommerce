@@ -2,66 +2,37 @@
 <html>
 <head>
 	<title>Cadastro Usuário</title>
-<style>
-	body {
-		background-color: #000;
-	}
-	form {
-		background-color: #fff;
-		margin: 50px auto;
-		padding: 20px;
-		width: 300px;
-	}
-	form label {
-		font-weight: bold;
-	}
-	form input {
-		float: right;
-	}
-	p {
-		margin-bottom: 30px;
-		position: relative;
-	}
-	p:before, p:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-	.fieldError {
-		color: #ff0000;
-		position: absolute;
-		bottom: -20px;
-		right: 0;
-	}
-	form h1 {
-		text-align: center;
-		margin-bottom: 30px;
-	}
-</style>
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+	
+	</head>
 <body>
-	<form method="POST">
+	<h2>Cadastre-se para acessar o sistema</h2>
+    <form method="POST">
 		<h1>Cadastro</h1>
-		<p>
+		<hr>
+        <p>
+			<label>Nome do Usuário:</label>
+			<input type="text" name="name">
+		</p>
+        <p>
 			<label>Login:</label>
-			<input type="text" name="login">
+			<input type="text" name="email" required>
 			<span class='fieldError'><?php echo $errorMsg; ?></span>
 		</p>
 		<p>
-			<label>Password:</label>
+			<label>Senha:</label>
 			<input type="password" name="password">
 		</p>
 		<p>
-			<label>E-Mail:</label>
-			<input type="text" name="email">
+			<label>Confirmar Senha:</label>
+			<input type="password" name="password">			
 		</p>
 		<p>
-			<label>Name:</label>
-			<input type="text" name="name">
+			<input type="submit" value="Enviar">
 		</p>
-		<p>
-			<input type="submit" value="Send">
-		</p>
+        <hr>
+        <a href="../login" id="cadastroLink">Voltar</a>
 	</form>
 </body>
 </html>
