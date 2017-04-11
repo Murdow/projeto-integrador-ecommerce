@@ -130,14 +130,20 @@
 		else echo "Não Conectou!";
 	}
 	
-	function logIn($dsn) {
+	function logIn() {
 		if(!isset($_SESSION['user'])) {
 			if(isset($_POST['login'])) $login = checkFormInputs('login');
 			if(isset($_POST['password'])) $password = checkFormInputs('password');
-			if(($login="a") && ($password="a")){
-					header("Location: ../dashboard");
-				}else{
-                    $errorMsg = "Email ou Senha Inválidos!";				
+			if($db = odbc_connect("pidsn", "", "")) {
+ -				$query = odbc_exec($db, "SELECT nome FROM usuario WHERE login = '$login' AND senha = '$password'");
+ -				
+ -				$result = odbc_fetch_array($query);
+ -
+ -				if(!empty($result['nome'])) {
+ -					$_SESSION['user'] = $result['nome'];
+ -					header("Location: ../dashboard/index.php");
+ -				}
+ -				else $GLOBALS['errorMsg'] = "Email ou Senha Inválidos!";
 			}
 		}		
     }
