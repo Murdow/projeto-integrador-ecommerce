@@ -1,12 +1,9 @@
 <?php	
 	session_start();
 	$errorMsg = '';
-    $db_host = "MATHEUS-PC";
-    $db_name = "loja"; 
-    $dsn = "Driver={SQL Server};Server=$db_host;Port=1433;Database=$db_name;";
 
 	function newUser() {
-		if($db = odbc_connect($dsn, "", "")) {
+		if($db = odbc_connect("pidsn", "", "")) {
 			
 			$login = checkFormInputs('login');
 			$password = checkFormInputs('password');
@@ -34,8 +31,8 @@
 		else echo "Erro ao cadastrar usuário!";
 	}
 
-	function detalhesItem($dsn) {
-        if($db = odbc_connect($dsn, "", "")) {
+	function detalhesItem() {
+        if($db = odbc_connect("pidsn", "", "")) {
 			$query = odbc_exec($db, "SELECT * FROM Produtos");
             $result = odbc_fetch_array($query);
             
@@ -72,8 +69,8 @@
     }
     
     
-    function searchItem($dsn) {
-		if($db = odbc_connect($dsn, "", "")) {
+    function searchItem() {
+		if($db = odbc_connect("pidsn", "", "")) {
 			$query = odbc_exec($db, "SELECT * FROM Produtos");
 			echo "<table cellspacing='0' class=''>
 					<thead>
@@ -104,8 +101,8 @@
 		}
 	}
 
-	function updateItem($dsn) {
-		if($db = odbc_connect($dsn,"","")) {
+	function updateItem() {
+		if($db = odbc_connect("pidsn","","")) {
 			if(odbc_exec($db, "UPDATE Usuario
 						   SET
 						   loginUsuario = '1234@gmail.com',
@@ -118,8 +115,8 @@
 		}
 	}
 
-	function deleteItem($dsn) {
-		if($db = odbc_connect($dsn,"","")) {				
+	function deleteItem() {
+		if($db = odbc_connect("pidsn","","")) {				
 			if(odbc_exec($db, "DELETE FROM Usuario
 							   WHERE
 							   loginUsuario = '1234@gmail.com'")) {
@@ -161,20 +158,20 @@
 	function getSessionUserName() {
 		return $_SESSION['user'];
 	}
-	function checkAction($dsn) {
+	function checkAction() {
 		
         if(isset($_GET['action'])){
             $action = $_GET['action'];
 
             switch($action) {
                 case "list":
-                    searchItem($dsn);
+                    searchItem();
                     break;
                 case "update":
-                    updateItem($dsn);
+                    updateItem();
                     break;
                 case "delete":
-                    deleteItem($dsn);
+                    deleteItem();
                     break;			
             }
         }
