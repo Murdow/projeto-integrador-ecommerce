@@ -11,14 +11,14 @@
     <form method="POST">
 		<h1>Login</h1>
         <hr>
-		<p class="errorMsg"><?php echo $errorMsg; ?></p>
+		<p class="errorMsg"><?php echo $GLOBALS['errorMsg']; ?></p>
 		<p>
-			<label for="email">Email:</label>
-			<input type="text" name="login" id="email" required>
+			<label>Login:</label>
+			<input type="text" name="login" required>
 		</p>
 		<p>
-			<label for="password">Senha:</label>
-			<input type="password" name="password" id="password" required>
+			<label>Senha:</label>
+			<input type="password" name="password" required>
 		</p>		
 		<p>
 			<input type="submit" value="Login">
@@ -27,6 +27,6 @@
         
 		<a href="../cadastro" id="cadastroLink">Cadastrar</a>
 	</form>
-   
+  
 </body>
 </html>

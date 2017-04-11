@@ -1,38 +1,76 @@
 <?php	
 	session_start();
 	$errorMsg = '';
+    $db_host = "MATHEUS-PC";
+    $db_name = "loja"; 
+    $dsn = "Driver={SQL Server};Server=$db_host;Port=1433;Database=$db_name;";
 
-	function newUser() {
-		if($db = odbc_connect("pidsn", "", "")) {
+	function newUser($dsn) {
+		if($db = odbc_connect($dsn, "", "")) {
 			
-			$login = checkFormInputs('login');
+            $login = checkFormInputs('email');
 			$password = checkFormInputs('password');
-			$email = checkFormInputs('email');
-			$name = checkFormInputs('name');
+			$passconfirm = checkFormInputs('passconfirm');
+            $name = checkFormInputs('name');
 
-			$query = odbc_exec($db, "SELECT login FROM usuario WHERE login = '$login'");
-			$result = odbc_fetch_array($query);
+            if ($password == $passconfirm){
 
-			if(!empty($result['login'])) {
-				$GLOBALS['errorMsg'] = "Esse login já está cadastrado!";	
-			}			
-			else {
-				odbc_exec($db, "INSERT INTO usuario
-									(senha,
-									email,
-									nome)
-								VALUES 
-									('$password',
-									'$email',
-									'$name')");	
-				header("Location: ../login");
-			}
-		}
-		else echo "Erro ao cadastrar usuário!";
+                $query = odbc_exec($db, "SELECT login FROM usuario WHERE login = '$login'");
+                $result = odbc_fetch_array($query);
+
+                if(!empty($result['login'])) {
+                    $GLOBALS['errorCadastro'] = "Esse login já está cadastrado!";	
+                
+                }else{
+                    odbc_exec($db, "INSERT INTO usuario
+                                        (senha,
+                                        login,
+                                        nome, 
+                                        tipoPerfil)
+                                    VALUES 
+                                        ('$password',
+                                        '$login',
+                                        '$name', 
+                                        'F')");	
+                    header ('location: ../login/?cadastro=sucesso');
+                    }
+            }else {$GLOBALS['errorCadastro'] = "Erro. As senhas não coincidem!"; }
+        }else $GLOBALS['errorCadastro'] = "Erro ao cadastrar usuário!";
 	}
 
-	function detalhesItem() {
-        if($db = odbc_connect("pidsn", "", "")) {
+    function erroCadastro(){
+        if (isset($GLOBALS['errorCadastro'])) echo $GLOBALS['errorCadastro'];
+    }
+
+    function searchUser($dsn) {
+		if($db = odbc_connect($dsn, "", "")) {
+			$query = odbc_exec($db, "SELECT * FROM Usuario");
+			echo "<table cellspacing='0' class=''>
+					<thead>
+						<th>Nome</th>
+						<th>Login</th>
+						<th>Ações</th>
+                    </thead><tbody>";
+			while($result = odbc_fetch_array($query)) {
+				
+               
+                              
+                echo "<tr>
+				        <td>", $result['nome'], "</td>
+				        <td>", $result['login'], "</td>
+				        <td id='acoes'>
+                            <a href='inserir/?idItem=", $result['idProduto'],"'><div class='edita'><p>Editar</p></div></a>
+                            <div class='deleta'><p>Excluir</p></div>
+                                            
+                        </td>
+				    </tr>";
+			}
+			echo "</tbody> </table>";
+		}
+	}
+
+	function detalhesItem($dsn) {
+        if($db = odbc_connect($dsn, "", "")) {
 			$query = odbc_exec($db, "SELECT * FROM Produtos");
             $result = odbc_fetch_array($query);
             
@@ -69,8 +107,8 @@
     }
     
     
-    function searchItem() {
-		if($db = odbc_connect("pidsn", "", "")) {
+    function searchItem($dsn) {
+		if($db = odbc_connect($dsn, "", "")) {
 			$query = odbc_exec($db, "SELECT * FROM Produtos");
 			echo "<table cellspacing='0' class=''>
 					<thead>
@@ -101,8 +139,8 @@
 		}
 	}
 
-	function updateItem() {
-		if($db = odbc_connect("pidsn","","")) {
+	function updateItem($dsn) {
+		if($db = odbc_connect($dsn,"","")) {
 			if(odbc_exec($db, "UPDATE Usuario
 						   SET
 						   loginUsuario = '1234@gmail.com',
@@ -115,9 +153,9 @@
 		}
 	}
 
-	function deleteItem() {
-		if($db = odbc_connect("pidsn","","")) {				
-			if(odbc_exec($db, "DELETE FROM Usuario
+	function deleteItem($dsn) {
+		if($db = odbc_connect($dsn,"","")) {				
+			if(odbc_exec($db, "DELETE FROM Produtos
 							   WHERE
 							   loginUsuario = '1234@gmail.com'")) {
 				echo "Usuário deletado com sucesso!<br>";
@@ -127,22 +165,27 @@
 		else echo "Não Conectou!";
 	}
 	
-	function logIn() {
-		if(!isset($_SESSION['user'])) {
-			if(isset($_POST['login'])) $login = checkFormInputs('login');
-			if(isset($_POST['password'])) $password = checkFormInputs('password');
-			if($db = odbc_connect("pidsn", "", "")) {
- -				$query = odbc_exec($db, "SELECT nome FROM usuario WHERE login = '$login' AND senha = '$password'");
- -				
- -				$result = odbc_fetch_array($query);
- -
- -				if(!empty($result['nome'])) {
- -					$_SESSION['user'] = $result['nome'];
- -					header("Location: ../dashboard/index.php");
- -				}
- -				else $GLOBALS['errorMsg'] = "Email ou Senha Inválidos!";
-			}
-		}		
+	function logIn($dsn) {
+		
+        if(isset($_POST['login']) && isset($_POST['password'])){
+	
+	       $login = checkFormInputs('login');	
+	       $password = checkFormInputs('password');
+            
+	       if($db = odbc_connect($dsn, "", "")) {
+               $query = odbc_exec($db, "SELECT nome FROM USUARIO WHERE login = '$login' AND senha = '$password'");
+            
+               $result = odbc_fetch_array($query);
+
+	
+               if  (!empty($result['nome'])){
+                   $_SESSION['user'] = $result['nome'];
+                   header("Location: ../dashboard/index.php");
+               }else{
+                   $GLOBALS['errorMsg'] = "Email ou Senha Inválidos!";
+               } 
+           }
+	   }
     }
 
 	function logOut() {
@@ -153,25 +196,25 @@
 		}
 	}
 	function checkFormInputs($formText) {
-		return str_replace('"','', str_replace("'",'', str_replace(';','', str_replace("\\",'', $_POST[$formText]))));
+		return str_replace('"','', str_replace("'",'', str_replace(';','', str_replace("\\",'', str_replace("/",'', $_POST[$formText])))));
 	}
 	function getSessionUserName() {
 		return $_SESSION['user'];
 	}
-	function checkAction() {
+	function checkAction($dsn) {
 		
         if(isset($_GET['action'])){
             $action = $_GET['action'];
 
             switch($action) {
                 case "list":
-                    searchItem();
+                    searchItem($dsn);
                     break;
                 case "update":
-                    updateItem();
+                    updateItem($dsn);
                     break;
                 case "delete":
-                    deleteItem();
+                    deleteItem($dsn);
                     break;			
             }
         }
