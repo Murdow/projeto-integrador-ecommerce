@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
+	<link rel="stylesheet" type="text/css" href="../../stylesheet.css">
     
 </head>
 <body>
@@ -25,7 +25,8 @@
 		</nav>
     </div>
     
-    <?php detalhesItem($dsn); ?>
-	
+    <div><?php detalhesItem($dsn); ?> </div><br><br><br><br>
+	<div class='deleta'><p>Excluir</p></div>
+    <a href='inserir/?idItem=", $result['idProduto'],"'><div class='edita'><p>Editar</p></div></a>
 </body>
 </html>

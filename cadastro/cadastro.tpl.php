@@ -11,6 +11,7 @@
     <form method="POST">
 		<h1>Cadastro</h1>
 		<hr>
+        <p class="errorMsg"><?php erroCadastro() ?></p>
         <p>
 			<label>Nome do Usuário:</label>
 			<input type="text" name="name">

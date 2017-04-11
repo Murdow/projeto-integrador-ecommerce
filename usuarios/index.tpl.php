@@ -28,7 +28,7 @@
         <input type="search" name="pesquisar">
         <input type="submit" name="enviar" value="pesquisar">
     </form>
-    <?php checkAction($dsn); ?>
+    <?php searchUser($dsn); ?>
 	
 </body>
 </html>
