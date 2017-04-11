@@ -1,13 +1,13 @@
 /*TABLE FOR SEARCH TEST*/
 table {
-	width: 100%;
+	width: 90%;
 }
 tr:nth-child(odd) {
-	background-color: #000;
+	background-color: #ff0000;
 	color: #fff;
 }
 #first tr:nth-child(odd) {
-	background-color: green;
+	background-color: #55d855;
 	color: #fff;
 	width: 100%;
 }

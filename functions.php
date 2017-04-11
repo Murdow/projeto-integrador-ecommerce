@@ -18,40 +18,86 @@
 			}			
 			else {
 				odbc_exec($db, "INSERT INTO usuario
-									(login, 
-									senha,
+									(senha,
 									email,
 									nome)
 								VALUES 
-									('$login',
-									'$password',
+									('$password',
 									'$email',
 									'$name')");	
-				header("Location: ../login/index.php");
+				header("Location: ../login");
 			}
 		}
 		else echo "Erro ao cadastrar usuário!";
 	}
 
-	function searchItem() {
+	function detalhesItem() {
+        if($db = odbc_connect("pidsn", "", "")) {
+			$query = odbc_exec($db, "SELECT * FROM Produtos");
+            $result = odbc_fetch_array($query);
+            
+            $idCateg = $result['idCategoria'];
+            $subquery = odbc_exec($db, "SELECT * FROM Categoria WHERE idCategoria=$idCateg");
+            $subresult = odbc_fetch_array($subquery);
+                
+            echo "<table cellspacing='0' class=''>
+                    <tr>
+                        <td class='bold'>Item</td>
+                        <td class='textocell'>", $result['nomeProduto'], "</td>
+                    </tr>
+                    <tr>
+                        <td class='bold'>Preço</td>
+                        <td class='textocell'>", $result['preco'], "</td>
+                    </tr>
+                    <tr>
+                        <td class='bold'>Categoria</td>
+                        <td class='textocell'>", $subresult['nameCategoria'], "</td>
+                    </tr>
+                    <tr>
+                        <td class='bold'>Estoque</td>
+                        <td class='textocell'>", $result['quantidade'], "</td>
+                    </tr>
+                    <tr>
+                        <td class='bold'>Descrição</td>
+                        <td class='textocell'>", $result['descricao'], "</td>
+                    </tr>
+                    <tr>
+                        <td class='bold'>Imagem</td>
+                        <td class='textocell'>", $result['imagem'], "</td>
+                    </tr>";
+        }
+    }
+    
+    
+    function searchItem() {
 		if($db = odbc_connect("pidsn", "", "")) {
-			$query = odbc_exec($db, "SELECT * FROM usuario");
-			echo "<table cellspacing='0'>
-					<tr>
-						<th>Login</th>
-						<th>Senha</th>
-						<th>E-mail</th>
-						<th>Nome</th>
-					</tr>";
+			$query = odbc_exec($db, "SELECT * FROM Produtos");
+			echo "<table cellspacing='0' class=''>
+					<thead>
+						<th>Item</th>
+						<th>Preço</th>
+						<th>Categoria</th>
+                        <th>Ações</th>
+                    </thead><tbody>";
 			while($result = odbc_fetch_array($query)) {
-				echo "<tr>";
-					echo "<td>".$result['login']."</td>";
-					echo "<td>".$result['senha']."</td>";
-					echo "<td>".$result['email']."</td>";
-					echo "<td>".$result['nome']."</td>";
-				echo "</tr>";
+				
+                $idCateg = $result['idCategoria'];
+                $subquery = odbc_exec($db, "SELECT * FROM Categoria WHERE idCategoria=$idCateg");
+                $subresult = odbc_fetch_array($subquery);
+                
+                echo "<tr>
+				        <td>", $result['nomeProduto'], "</td>
+				        <td>R$ ", $result['preco'], "</td>
+				        <td>", $subresult['nameCategoria'], "</td>
+                        <td id='acoes'>
+                            <a href='detalhes/?idItem=", $result['idProduto'],"'><div class='detalhes'><p>Detalhes</p></div></a>
+                            <a href='inserir/?idItem=", $result['idProduto'],"'><div class='edita'><p>Editar</p></div></a>
+                            <div class='deleta'><p>Excluir</p></div>
+                                            
+                        </td>
+				    </tr>";
 			}
-			echo "</table>";
+			echo "</tbody> </table>";
 		}
 	}
 
@@ -86,18 +132,18 @@
 			if(isset($_POST['login'])) $login = checkFormInputs('login');
 			if(isset($_POST['password'])) $password = checkFormInputs('password');
 			if($db = odbc_connect("pidsn", "", "")) {
-				$query = odbc_exec($db, "SELECT nome FROM usuario WHERE login = '$login' AND senha = '$password'");
-				
-				$result = odbc_fetch_array($query);
-
-				if(!empty($result['nome'])) {
-					$_SESSION['user'] = $result['nome'];
-					header("Location: ../dashboard/index.php");
-				}
-				else $GLOBALS['errorMsg'] = "Email ou Senha Inválidos!";				
+ -				$query = odbc_exec($db, "SELECT nome FROM usuario WHERE login = '$login' AND senha = '$password'");
+ -				
+ -				$result = odbc_fetch_array($query);
+ -
+ -				if(!empty($result['nome'])) {
+ -					$_SESSION['user'] = $result['nome'];
+ -					header("Location: ../dashboard/index.php");
+ -				}
+ -				else $GLOBALS['errorMsg'] = "Email ou Senha Inválidos!";
 			}
 		}		
-	}
+    }
 
 	function logOut() {
 		if(isset($_GET['session'])) {
@@ -113,18 +159,22 @@
 		return $_SESSION['user'];
 	}
 	function checkAction() {
-		$action = $_GET['action'];
+		
+        if(isset($_GET['action'])){
+            $action = $_GET['action'];
 
-		switch($action) {
-			case "list":
-				searchItem();
-				break;
-			case "update":
-				updateItem();
-				break;
-			case "delete":
-				deleteItem();
-				break;			
-		}
+            switch($action) {
+                case "list":
+                    searchItem();
+                    break;
+                case "update":
+                    updateItem();
+                    break;
+                case "delete":
+                    deleteItem();
+                    break;			
+            }
+        }
 	}
+
 ?>

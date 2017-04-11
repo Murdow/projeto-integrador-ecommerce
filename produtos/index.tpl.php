@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -13,24 +12,20 @@
 	<div id="wrapper">
 		<header id="pageHeader">
 			<h1><a href="/loja/dashboard">Dashboard</a></h1>
-			<h2> Bem Vindo <?php echo getSessionUserName();?>!</h2>
+			
 		</header>
 		
 		<nav id="productsControlNavigation">
 			<ul>
 				<li><a href="../produtos/?action=list">PRODUTOS</a></li>
-				<li><a href="edit.php?action=update">CATEGORIAS</a></li>
-				<li><a href="edit.php?action=delete">USUARIOS</a></li>
+				<li><a href="../categorias/?action=update">CATEGORIAS</a></li>
+				<li><a href="../usuario/?action=delete">USUARIOS</a></li>
 				<li><a href="login.php?session=finish">Sair</a></li>
 			</ul>	
 		</nav>
     </div>
     
     <?php checkAction($dsn); ?>
-    <article>
-        <a href="?action=list"><div id="esquerda" class="bannerdash">Produtos</div></a>
-        <a href="edit.php?action=update"><div id="meio" class="bannerdash">Categorias</div></a>
-        <a href="edit.php?action=update"><div id="direita" class="bannerdash">Usuarios</div></a>
-    </article>
+	
 </body>
 </html>
