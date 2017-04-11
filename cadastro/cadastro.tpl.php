@@ -7,26 +7,26 @@
 	
 	</head>
 <body>
-	<h1>Cadastre-se para acessar o sistema</h1>
+	<h2>Cadastre-se para acessar o sistema</h2>
     <form method="POST">
-		<h2>Cadastro</h2>
+		<h1>Cadastro</h1>
 		<hr>
         <p>
-			<label for="name">Nome do Usuário:</label>
-			<input type="text" name="name" id="name">
+			<label>Nome do Usuário:</label>
+			<input type="text" name="name">
 		</p>
         <p>
-			<label for="email">E-Mail:</label>
-			<input type="text" name="email" id="email" required>
+			<label>Login:</label>
+			<input type="text" name="email" required>
 			<span class='fieldError'><?php echo $errorMsg; ?></span>
 		</p>
 		<p>
-			<label id="password">Senha:</label>
-			<input type="password" name="password" id="password">
+			<label>Senha:</label>
+			<input type="password" name="password">
 		</p>
 		<p>
-			<label for="confPwd">Confirmar Senha:</label>
-			<input type="password" name="confPwd" id="confPwd">			
+			<label>Confirmar Senha:</label>
+			<input type="password" name="passconfirm">			
 		</p>
 		<p>
 			<input type="submit" value="Enviar">

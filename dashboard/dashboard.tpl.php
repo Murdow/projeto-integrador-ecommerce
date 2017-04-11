@@ -20,17 +20,16 @@
 			<ul>
 				<li><a href="../produtos/?action=list">PRODUTOS</a></li>
 				<li><a href="edit.php?action=update">CATEGORIAS</a></li>
-				<li><a href="edit.php?action=delete">USUARIOS</a></li>
-				<li><a href="login.php?session=finish">Sair</a></li>
+				<li><a href="../usuarios">USUARIOS</a></li>
+				<li><a href="../login/?session=finish">Sair</a></li>
 			</ul>	
 		</nav>
     </div>
     
-    <?php checkAction($dsn); ?>
     <article>
-        <a href="?action=list"><div id="esquerda" class="bannerdash">Produtos</div></a>
-        <a href="edit.php?action=update"><div id="meio" class="bannerdash">Categorias</div></a>
-        <a href="edit.php?action=update"><div id="direita" class="bannerdash">Usuarios</div></a>
+        <a href="../produtos/?action=list"><div id="esquerda" class="bannerdash"><div class="fundo"><p>Produtos</p></div></div></a>
+        <a href="edit.php?action=update"><div id="meio" class="bannerdash"><div class="fundo"><p>Categorias</p></div></div></a>
+        <a href="../usuarios"><div id="direita" class="bannerdash"><div class="fundo"><p>Usuarios</p></div></div></a>
     </article>
 </body>
 </html>

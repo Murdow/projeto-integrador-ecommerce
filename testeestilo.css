@@ -97,6 +97,8 @@ td, th {
 	width: 100px;
 }
 
+
+/*ações da lista de produtos */
 .edita, .deleta, .detalhes {
     width: 80px;
     height: 25px;
@@ -137,6 +139,10 @@ td, th {
     background-color: #081996;
 }
 
+/*fim das ações*/
+
+
+/* banner dashboard*/
 article {
     width: 80%;
     margin: 3% auto auto 10%;
@@ -146,7 +152,45 @@ article {
     width: 29%;
     margin: auto 2% auto 2%;
     height: 500px;
-    border:1px solid black;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.3);
     float: left;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.bannerdash:hover {
+    font-size: 130%;
+    
+}
+
+.fundo p {
+    text-align: center;
+    font-family: Roboto;
+    font-size: 200%;
+    font-weight: bolder;
+    padding-top: 70%;
+}
+
+
+#esquerda {
+    background: url(img/estoque.jpg) no-repeat;
+}
+
+#meio {
+    background: url(img/categ.jpg) no-repeat;
+}
+
+#direita {
+    background: url(img/user.jpg) no-repeat;
+}
+
+.fundo:hover{
+   
+    transition: background-color 0.2s linear 0s; ;
+     width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
