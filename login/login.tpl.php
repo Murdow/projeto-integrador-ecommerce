@@ -13,12 +13,12 @@
         <hr>
 		<p class="errorMsg"><?php echo $errorMsg; ?></p>
 		<p>
-			<label>Login:</label>
-			<input type="text" name="login" required>
+			<label for="email">Email:</label>
+			<input type="text" name="login" id="email" required>
 		</p>
 		<p>
-			<label>Senha:</label>
-			<input type="password" name="password" required>
+			<label for="password">Senha:</label>
+			<input type="password" name="password" id="password" required>
 		</p>		
 		<p>
 			<input type="submit" value="Login">
