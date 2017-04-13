@@ -20,12 +20,20 @@
 				<li><a href="../produtos/?action=list">PRODUTOS</a></li>
 				<li><a href="../categorias/?action=update">CATEGORIAS</a></li>
 				<li><a href="../usuario/?action=delete">USUARIOS</a></li>
+<<<<<<< HEAD
 				<li><a href="../login/?session=finish">Sair</a></li>
+=======
+				<li><a href="login.php?session=finish">Sair</a></li>
+>>>>>>> origin/dev
 			</ul>	
 		</nav>
     </div>
     
+<<<<<<< HEAD
     <?php checkAction($db); ?>
+=======
+    <?php checkAction($dsn); ?>
+>>>>>>> origin/dev
 	
 </body>
 </html>
