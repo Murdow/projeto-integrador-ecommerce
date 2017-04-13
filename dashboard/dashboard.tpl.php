@@ -21,20 +21,12 @@
 				<li><a href="../produtos/?action=list">PRODUTOS</a></li>
 				<li><a href="edit.php?action=update">CATEGORIAS</a></li>
 				<li><a href="edit.php?action=delete">USUARIOS</a></li>
-<<<<<<< HEAD
 				<li><a href="../login/?session=finish">Sair</a></li>
-=======
-				<li><a href="login.php?session=finish">Sair</a></li>
->>>>>>> origin/dev
 			</ul>	
 		</nav>
     </div>
     
-<<<<<<< HEAD
     <?php checkAction($db); ?>
-=======
-    <?php checkAction($dsn); ?>
->>>>>>> origin/dev
     <article>
         <a href="?action=list"><div id="esquerda" class="bannerdash">Produtos</div></a>
         <a href="edit.php?action=update"><div id="meio" class="bannerdash">Categorias</div></a>

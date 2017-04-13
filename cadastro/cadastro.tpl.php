@@ -10,11 +10,7 @@
 	<h1>Cadastre-se para acessar o sistema</h1>
     <form method="POST">
 		<h2>Cadastro</h2>
-<<<<<<< HEAD
 		<hr>	
-=======
-		<hr>
->>>>>>> origin/dev
         <p>
 			<label for="name">Nome do Usuário:</label>
 			<input type="text" name="name" id="name">
