@@ -1,6 +1,6 @@
 <?php	
 	session_start();
-	include('../db/index.php');
+	include('db/index.php');
 	$errorMsg = '';
 
 	function newUser($db) {			
@@ -25,6 +25,30 @@
 								'$name')");	
 			header("Location: ../login");
 		}
+	}
+	function listProducts($db) {
+		if(isset($_GET['searchByName'])) {
+			$searchByName = $_GET['searchByName'];
+			$query = odbc_exec($db, "SELECT * FROM Produto WHERE nomeProduto = '$searchByName'");
+		}
+		elseif(isset($_GET['searchByCategory'])) {
+			$searchByCategory = $_GET['searchByCategory'];
+			$query = odbc_exec($db, "SELECT * FROM Produto WHERE idCategoria = '$searchByCategory'");
+		}
+		elseif(isset($_GET['sort'])) {
+			if($_GET['sort'] == "1")
+				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY precProduto ASC");
+			elseif($_GET['sort'] == "2")
+				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY precProduto DESC");
+			elseif($_GET['sort'] == "3")
+				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY qtdMinEstoque ASC");
+			elseif($_GET['sort'] == "4")
+				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY qtdMinEstoque DESC");
+		}
+		else
+			$query = odbc_exec($db, "SELECT * FROM Produto");
+		
+		return $query;
 	}
 
 	function detalhesItem($db) {        
