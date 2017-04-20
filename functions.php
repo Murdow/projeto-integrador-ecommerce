@@ -4,9 +4,9 @@
 	$errorMsg = '';
 
 	function newUser($db) {			
-		$password = checkFormInputs('password');
-		$login = checkFormInputs('email');
-		$name = checkFormInputs('name');
+		$password = fieldValidation($_POST['password']);
+		$login = fieldValidation($_POST['email']);
+		$name = fieldValidation($_POST['name']);
 
 		$query = odbc_exec($db, "SELECT loginUsuario FROM Usuario WHERE loginUsuario = '$login'");
 		$result = odbc_fetch_array($query);
@@ -29,99 +29,44 @@
 	function listProducts($db) {
 		if(isset($_GET['searchByName'])) {
 			$searchByName = $_GET['searchByName'];
-			$query = odbc_exec($db, "SELECT * FROM Produto WHERE nomeProduto = '$searchByName'");
+			$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto WHERE nomeProduto = '$searchByName'");
 		}
 		elseif(isset($_GET['searchByCategory'])) {
-			$searchByCategory = $_GET['searchByCategory'];
-			$query = odbc_exec($db, "SELECT * FROM Produto WHERE idCategoria = '$searchByCategory'");
+			if($_GET['searchByCategory'] != "0") {
+				$searchByCategory = $_GET['searchByCategory'];
+				$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto WHERE idCategoria = '$searchByCategory'");
+			}
+			else $query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto");
 		}
 		elseif(isset($_GET['sort'])) {
-			if($_GET['sort'] == "1")
-				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY precProduto ASC");
-			elseif($_GET['sort'] == "2")
-				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY precProduto DESC");
-			elseif($_GET['sort'] == "3")
-				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY qtdMinEstoque ASC");
-			elseif($_GET['sort'] == "4")
-				$query = odbc_exec($db, "SELECT * FROM Produto ORDER BY qtdMinEstoque DESC");
+			switch ($_GET['sort']) {
+				case '1':
+					$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto ORDER BY precProduto ASC");
+					break;
+				case '2':
+					$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto ORDER BY precProduto DESC");
+					break;
+				case '3':
+					$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto ORDER BY qtdMinEstoque ASC");
+					break;
+				case '4':
+					$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto ORDER BY qtdMinEstoque DESC");
+					break;				
+				default:
+					$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto");
+					break;
+			}				
 		}
 		else
-			$query = odbc_exec($db, "SELECT * FROM Produto");
+			$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto");
 		
 		return $query;
-	}
-
-	function detalhesItem($db) {        
-		$query = odbc_exec($db, "SELECT * FROM Produtos");
-        $result = odbc_fetch_array($query);
-        
-        $idCateg = $result['idCategoria'];
-        $subquery = odbc_exec($db, "SELECT * FROM Categoria WHERE idCategoria=$idCateg");
-        $subresult = odbc_fetch_array($subquery);
-            
-        echo "<table cellspacing='0' class=''>
-                <tr>
-                    <td class='bold'>Item</td>
-                    <td class='textocell'>", $result['nomeProduto'], "</td>
-                </tr>
-                <tr>
-                    <td class='bold'>Preço</td>
-                    <td class='textocell'>", $result['preco'], "</td>
-                </tr>
-                <tr>
-                    <td class='bold'>Categoria</td>
-                    <td class='textocell'>", $subresult['nameCategoria'], "</td>
-                </tr>
-                <tr>
-                    <td class='bold'>Estoque</td>
-                    <td class='textocell'>", $result['quantidade'], "</td>
-                </tr>
-                <tr>
-                    <td class='bold'>Descrição</td>
-                    <td class='textocell'>", $result['descricao'], "</td>
-                </tr>
-                <tr>
-                    <td class='bold'>Imagem</td>
-                    <td class='textocell'>", $result['imagem'], "</td>
-                </tr>";
-        
-    }
-    
-    
-    function searchItem($db) {		
-		$query = odbc_exec($db, "SELECT * FROM Produto");
-		echo "<table cellspacing='0' class=''>
-				<thead>
-					<th>Item</th>
-					<th>Preço</th>
-					<th>Categoria</th>
-                    <th>Ações</th>
-                </thead><tbody>";
-		while($result = odbc_fetch_array($query)) {
-			
-           // $idCateg = $result['idCategoria'];
-            //$subquery = odbc_exec($db, "SELECT * FROM Categoria WHERE idCategoria=$idCateg");
-            //$subresult = odbc_fetch_array($subquery);
-            
-            echo "<tr>
-			        <td>", $result['nomeProduto'], "</td>
-			        <td>R$ ", $result['preco'], "</td>
-			        <td>", $subresult['nameCategoria'], "</td>
-                    <td id='acoes'>
-                        <a href='detalhes/?idItem=", $result['idProduto'],"'><div class='detalhes'><p>Detalhes</p></div></a>
-                        <a href='inserir/?idItem=", $result['idProduto'],"'><div class='edita'><p>Editar</p></div></a>
-                        <div class='deleta'><p>Excluir</p></div>
-                                        
-                    </td>
-			    </tr>";
-		}
-		echo "</tbody> </table>";		
 	}
 	
 	function logIn($db) {
 		if(!isset($_SESSION['user'])) {
-			if(isset($_POST['login'])) $login = checkFormInputs('login');
-			if(isset($_POST['password'])) $password = checkFormInputs('password');
+			if(isset($_POST['login'])) $login = fieldValidation($_POST['login']);
+			if(isset($_POST['password'])) $password = fieldValidation($_POST['password']);
 			
 			$query = odbc_exec($db, "SELECT nomeUsuario, idUsuario, tipoPerfil FROM Usuario WHERE loginUsuario = '$login' AND senhaUsuario = '$password'");
 			
@@ -129,7 +74,7 @@
 
 			if(!empty($result['nomeUsuario'])) {
 				$_SESSION['user'] = $result['nomeUsuario'];
-				$_SESSION['id'] = $result['idUsuario']; // dizer quem cadastrou, chave estrangeira
+				$_SESSION['id'] = $result['idUsuario']; 
 				$_SESSION['type'] = $result['tipoPerfil'];
 				header("Location: ../dashboard/");
 			}
@@ -144,8 +89,12 @@
 				session_destroy();
 		}
 	}
-	function checkFormInputs($formText) {
-		return str_replace('"','', str_replace("'",'', str_replace(';','', str_replace("\\",'', $_POST[$formText]))));
+	function fieldValidation($value) {
+		return str_replace('"','',
+				str_replace("'",'',
+				str_replace(';','',
+				str_replace("\\",'',
+				$value))));
 	}
 	function getSessionUserName() {
 		return $_SESSION['user'];

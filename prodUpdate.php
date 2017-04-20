@@ -21,19 +21,22 @@
 		$result = odbc_fetch_array($query);
 		return $result['nomeUsuario'];
 	}
+	
 	$msg = "";
 	//UPDATE
 	if((isset($_GET['update'])) && ($_GET['update'] == "true")) {			
 		$id = $_POST['prodID'];
-		$name = $_POST['prodName'];
-		$description = $_POST['prodDescription'];
-		$price = $_POST['prodPrice'];
-		$discount = $_POST['prodDiscount'];
+		$name = fieldValidation($_POST['prodName']);
+		$description = fieldValidation($_POST['prodDescription']);
+		$price = fieldValidation($_POST['prodPrice']);
+		$discount = fieldValidation($_POST['prodDiscount']);
 		$idCategory = $_POST['prodCategory'];
 		$status = $_POST['prodStatus'];	
 		$userId = getSessionUserId();
-		$qtd = $_POST['prodQtd'];
+		$qtd = fieldValidation($_POST['prodQtd']);
 		$image = $_POST['prodImg'];	
+		$price = str_replace(",", ".", $price);
+		$discount = str_replace(",", ".", $discount);
 
 		if(odbc_exec($db, "UPDATE Produto
 					   SET
@@ -47,9 +50,10 @@
 					   qtdMinEstoque = '$qtd',
 					   imagem = '$image'
 					   WHERE
-					   idProduto = $id")) {
-		$msg = "Produto atualizado com sucesso!";
-						}
+					   idProduto = $id")) 
+			header("Location: produtos/?update=success");
+		else $msg = "Erro ao alterado produto!";
+						
 	}
 ?>
 <!DOCTYPE html>
@@ -138,7 +142,7 @@
 		</p>
 		<p>	
 			<label>Preço:</label>
-			<input type="text" id="prodPrice" name="prodPrice" value="<?php echo number_format($result['precProduto'], 2, ',', ' '); ?>">
+			<input type="text" id="prodPrice" name="prodPrice" value="<?php echo str_replace(",", ".", number_format($result['precProduto'], 2, ',', ' ')); ?>">
 		</p>
 		<p>
 			<label>Descrição:</label>
@@ -175,7 +179,7 @@
 		<p>
 			<input type="submit" value="Salvar Alterações">
 		</p>
-		<a href="prodList.php">Back</a>
+		<a href="produtos/">Back</a>
 	</form>
 	
 </body>
