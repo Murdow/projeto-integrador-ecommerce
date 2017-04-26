@@ -3,29 +3,6 @@
 	include('db/index.php');
 	$errorMsg = '';
 
-	function newUser($db) {			
-		$password = fieldValidation($_POST['password']);
-		$login = fieldValidation($_POST['email']);
-		$name = fieldValidation($_POST['name']);
-
-		$query = odbc_exec($db, "SELECT loginUsuario FROM Usuario WHERE loginUsuario = '$login'");
-		$result = odbc_fetch_array($query);
-
-		if(!empty($result['loginUsuario'])) {
-			$GLOBALS['errorMsg'] = "Esse login já está cadastrado!";	
-		}			
-		else {
-			odbc_exec($db, "INSERT INTO usuario
-								(senha,
-								email,
-								nome)
-							VALUES 
-								('$password',
-								'$email',
-								'$name')");	
-			header("Location: ../login");
-		}
-	}
 	function listProducts($db) {
 		if(isset($_GET['searchByName'])) {
 			$searchByName = $_GET['searchByName'];
@@ -55,7 +32,7 @@
 				default:
 					$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto");
 					break;
-			}				
+			}			
 		}
 		else
 			$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque FROM Produto");
@@ -68,7 +45,7 @@
 			if(isset($_POST['login'])) $login = fieldValidation($_POST['login']);
 			if(isset($_POST['password'])) $password = fieldValidation($_POST['password']);
 			
-			$query = odbc_exec($db, "SELECT nomeUsuario, idUsuario, tipoPerfil FROM Usuario WHERE loginUsuario = '$login' AND senhaUsuario = '$password'");
+			$query = odbc_exec($db, "SELECT nomeUsuario, idUsuario, tipoPerfil FROM Usuario WHERE loginUsuario = '$login' AND senhaUsuario = HASHBYTES('SHA1','$password')");
 			
 			$result = odbc_fetch_array($query);
 
@@ -79,7 +56,8 @@
 				header("Location: ../dashboard/");
 			}
 			else $GLOBALS['errorMsg'] = "Email ou Senha Inválidos!";			
-		}		
+		}	
+		odbc_close($db);
     }
 
 	function logOut() {

@@ -25,7 +25,7 @@
 	$msg = "";
 	//UPDATE
 	if((isset($_GET['update'])) && ($_GET['update'] == "true")) {			
-		$id = $_POST['prodID'];
+		if(is_numeric($_POST['prodID'])) $id = $_POST['prodID'];		
 		$name = fieldValidation($_POST['prodName']);
 		$description = fieldValidation($_POST['prodDescription']);
 		$price = fieldValidation($_POST['prodPrice']);
@@ -52,8 +52,10 @@
 					   WHERE
 					   idProduto = $id")) 
 			header("Location: produtos/?update=success");
-		else $msg = "Erro ao alterado produto!";
-						
+		else {
+			$msg = "Erro ao alterar produto!";
+			odbc_close($db);
+		}
 	}
 ?>
 <!DOCTYPE html>

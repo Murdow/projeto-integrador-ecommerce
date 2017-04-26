@@ -7,32 +7,35 @@
 	
 	</head>
 <body>
-	<h1>Cadastre-se para acessar o sistema</h1>
+	<h1>Cadastro</h1>
     <form method="POST">
-		<h2>Cadastro</h2>
-		<hr>	
-        <p>
-			<label for="name">Nome do Usuário:</label>
-			<input type="text" name="name" id="name">
-		</p>
-        <p>
-			<label for="email">E-Mail:</label>
-			<input type="text" name="email" id="email" required>
-			<span class='fieldError'><?php echo $errorMsg; ?></span>
+		<p><?php echo $erro; ?></p>
+		<p>
+			<label>Nome: </label>
+			<input type="text" name="nome">
 		</p>
 		<p>
-			<label id="password">Senha:</label>
-			<input type="password" name="password" id="password">
+			<label>login: </label>
+			<input type="text" name="login">
 		</p>
 		<p>
-			<label for="confPwd">Confirmar Senha:</label>
-			<input type="password" name="confPwd" id="confPwd">			
+			<label>Senha: </label>
+			<input type="password" name="senha">
 		</p>
 		<p>
-			<input type="submit" value="Enviar">
+			<label>Perfil:	</label>
+			<select name="perfil">
+				<option value="A">Administrador</option>
+				<option value="E">Funcionário</option>
+			</select>
+		</P>
+		<p>
+			<label>Ativo: </label>
+			<input type="checkbox" name="ativo" checked><br><br>
 		</p>
-        <hr>
-        <a href="../login" id="cadastroLink">Voltar</a>
+		<p>
+			<input type="submit" value="Gravar" name="btnNovoUsuario">	
+		</p>
 	</form>
 </body>
 </html>

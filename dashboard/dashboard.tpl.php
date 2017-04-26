@@ -18,9 +18,9 @@
 		
 		<nav id="productsControlNavigation">
 			<ul>
-				<li><a href="../produtos/?action=list">PRODUTOS</a></li>
-				<li><a href="edit.php?action=update">CATEGORIAS</a></li>
-				<li><a href="edit.php?action=delete">USUARIOS</a></li>
+				<li><a href="../produtos/">PRODUTOS</a></li>
+				<li><a href="../categorias/">CATEGORIAS</a></li>
+				<li><a href="../usuarios/">USUARIOS</a></li>
 				<li><a href="../login/?session=finish">Sair</a></li>
 			</ul>	
 		</nav>

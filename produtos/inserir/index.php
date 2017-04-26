@@ -48,8 +48,10 @@
 							'$status',
 							'$userId',
 							'$qtd',
-							'$image')"))	
+							'$image')")) {	
+			odbc_close($db);
 			header("Location: ../index.php?add=success");
+		}
 		else $msg = "Erro ao inserir produto!";
 	}
 

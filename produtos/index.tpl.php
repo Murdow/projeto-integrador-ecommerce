@@ -83,7 +83,7 @@
 		?>
 				<tr>
 					<td class='textocell'><?php echo $result['nomeProduto']; ?></td>
-					<td class='textocell'><?php echo number_format($result['precProduto'], 2, ',', ' '); ?></td>
+					<td class='textocell'>R$ <?php echo number_format($result['precProduto'], 2, ',', ' '); ?></td>
 					<td class='textocell'><?php echo $result['qtdMinEstoque']; ?></td>
 					<td id='acoes'>
 						<?php if($result['idProduto'] > 10): ?>
@@ -92,7 +92,7 @@
 						<?php endif; ?>
 					</td>
 				</tr>
-			<?php endwhile; ?>
+			<?php endwhile; odbc_close($db);?>
 	</table>
 	
 </body>
