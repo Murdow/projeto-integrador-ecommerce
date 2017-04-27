@@ -40,7 +40,10 @@
 			</ul>	
 		</nav>
     </div>
-    
+    <?php
+    	if(getSessionUserType() === "A")
+    		echo "<a id='addNew' href='cadastro/'>Adicionar novo usuário</a>";
+    ?>
 	<p id="actionMsg"><?php echo $msg; ?></p>
 	<table cellspacing='0'>
 		<tr>
@@ -59,8 +62,8 @@
 					<td class='textocell'><?php echo $result['tipoPerfil']; ?></td>
 					<td class='textocell'><?php echo $result['usuarioAtivo']; ?></td>
 					<td id='acoes'>
-						<?php if($result['idUsuario'] > 1): ?>
-							<a class='edita' href="#">Edit</a>
+						<?php if($result['idUsuario'] > 1 && getSessionUserType() === "A"): ?>
+							<a class='edita' href="editar/?id=<?php echo $result['idUsuario']; ?>">Edit</a>
 							<a class='deleta' href="?action=delete&id=<?php echo $result['idUsuario']; ?>">Delete</a>
 						<?php endif; ?>
 					</td>

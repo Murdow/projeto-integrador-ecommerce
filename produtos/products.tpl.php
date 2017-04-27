@@ -34,8 +34,8 @@
 		<nav id="productsControlNavigation">
 			<ul>
 				<li><a href="../produtos/">PRODUTOS</a></li>
-				<li><a href="../categorias/?action=update">CATEGORIAS</a></li>
-				<li><a href="../usuario/?action=delete">USUARIOS</a></li>
+				<li><a href="../categorias/">CATEGORIAS</a></li>
+				<li><a href="../usuarios/">USUARIOS</a></li>
 				<li><a href="../login/?session=finish">Sair</a></li>
 			</ul>	
 		</nav>
@@ -87,7 +87,7 @@
 					<td class='textocell'><?php echo $result['qtdMinEstoque']; ?></td>
 					<td id='acoes'>
 						<?php if($result['idProduto'] > 10): ?>
-							<a class='edita' href="../prodUpdate.php?id=<?php echo $result['idProduto']; ?>">Edit</a>
+							<a class='edita' href="editar/?id=<?php echo $result['idProduto']; ?>">Edit</a>
 							<a class='deleta' href="?action=delete&id=<?php echo $result['idProduto']; ?>">Delete</a>
 						<?php endif; ?>
 					</td>

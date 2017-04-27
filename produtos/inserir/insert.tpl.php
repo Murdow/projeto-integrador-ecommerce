@@ -85,8 +85,8 @@
 		<nav id="productsControlNavigation">
 			<ul>
 				<li><a href="../../produtos/">PRODUTOS</a></li>
-				<li><a href="../../categorias/?action=update">CATEGORIAS</a></li>
-				<li><a href="../../usuario/?action=delete">USUARIOS</a></li>
+				<li><a href="../../categorias/">CATEGORIAS</a></li>
+				<li><a href="../../usuarios/">USUARIOS</a></li>
 				<li><a href="../../login/?session=finish">Sair</a></li>
 			</ul>	
 		</nav>

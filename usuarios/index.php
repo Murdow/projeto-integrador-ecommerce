@@ -24,5 +24,5 @@
 		$query = odbc_exec($db, "SELECT idUsuario, nomeUsuario, tipoPerfil, usuarioAtivo FROM Usuario");
 		return $query;
 	} 
-	include "index.tpl.php";
+	include "users.tpl.php";
 ?>

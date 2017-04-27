@@ -55,5 +55,5 @@
 		else $msg = "Erro ao inserir produto!";
 	}
 
-	include "index.tpl.php";
+	include "insert.tpl.php";
 ?>

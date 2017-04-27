@@ -1,6 +1,7 @@
 <?php
-	include "../functions.php";
-	if(isset($_SESSION['user'])) header("Location: ../dashboard/");	
+	include "../../functions.php";
+	if(!isset($_SESSION['user'])) header("Location: ../../login/");
+	if(isset($_SESSION['type']) && $_SESSION['type'] != "A") header("Location: ../../dashboard/");
 	if(isset($_POST['login']) && isset($_POST['senha']) && isset($_POST['nome'])) newUser($db);
 	$erro = "";
 	function newUser($db) {			
@@ -22,8 +23,8 @@
 			
 			//trata perfil
 			$perfil = 	$_POST['perfil'] != 'A' 
-						&& $_POST['perfil'] != 'C' 
-						? 'C' :	$_POST['perfil'];
+						&& $_POST['perfil'] != 'E' 
+						? 'E' :	$_POST['perfil'];
 			
 			//trata ativo
 			$_POST['ativo'] = !isset($_POST['ativo']) ? 0 : $_POST['ativo'];
@@ -44,11 +45,11 @@
 									'$perfil',
 									$ativo)")){
 				odbc_close($db);
-				header("Location: ../login");				
+				header("Location: ../../usuarios/?add=success");				
 			}else{
 				$GLOBALS["erro"] = "Erro ao cadastrar usuário";
 			}
 		}
 	}
-	include "cadastro.tpl.php";
+	include "signup.tpl.php";
 ?>

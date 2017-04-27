@@ -3,7 +3,7 @@
 <head>
 	<title>Cadastro Usuário</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
 	
 	</head>
 <body>
