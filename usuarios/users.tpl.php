@@ -6,9 +6,28 @@
     <title>Usuários</title>
 	<link rel="stylesheet" type="text/css" href="../testeestilo.css">
     <style type="text/css">
-    	td {
+    	body {
+			background-color: #a5acaf;
+		}
+		#pageHeader {
+			background-color: #002244;
+		}
+		#pageHeader img {
+			width: 150px;
+		}
+		td {
     		text-align: left!important;
     	}
+		#productsControlNavigation {
+			background-color: #69be28;
+		}
+		#productsControlNavigation ul li a {
+			color:  #002244;
+		}
+		#productsControlNavigation ul li a:hover {
+			background-color: #002244;
+			color: #69be28;
+		}
     	form {
     		display: inline-block;
     	}
@@ -21,13 +40,44 @@
 			text-align: center;
 			width: 100%;
 		}
+		#btnContainer {
+			margin-top: 20px;
+			padding-right: 60px;
+			text-align: right;
+		}
+		#addNew {
+			background-color: #002244;
+			border-radius: 2px;
+			color: #69be28;
+			padding: 5px 10px;
+			text-decoration: none;
+		}
+		#addNew:hover {
+			background-color: #69be28;
+			color: #002244;
+			font-weight: bold;
+		}
+		.edita, .deleta {
+			padding: 5px 10px;
+			text-align: center;
+			text-decoration: none;
+		}
+		.edita {
+			background-color: #69be28;
+			color: #002244;
+		}
+		.deleta {
+			background-color: #002244;
+			color: #69be28;
+		}
     </style>
 </head>
 <body>
 
 	<div id="wrapper">
 		<header id="pageHeader">
-			<h1><a href="/loja/dashboard">Dashboard</a></h1>
+			<!--<h1><a href="/loja/dashboard">Dashboard</a></h1>-->
+			<img src="../imagems/logo.jpg" alt="logo" title="home">
 			
 		</header>
 		
@@ -40,17 +90,20 @@
 			</ul>	
 		</nav>
     </div>
-    <?php
-    	if(getSessionUserType() === "A")
-    		echo "<a id='addNew' href='cadastro/'>Adicionar novo usuário</a>";
-    ?>
+	<div id="btnContainer">
+		 <?php
+			if(getSessionUserType() === "A")
+				echo "<a id='addNew' href='cadastro/'>Adicionar novo usuário</a>";
+		?>
+	</div>
+   
 	<p id="actionMsg"><?php echo $msg; ?></p>
 	<table cellspacing='0'>
 		<tr>
-			<th>Name</th>
-			<th>Type</th>
+			<th>Nome</th>
+			<th>Tipo</th>
 			<th>Status</th>
-			<th>Action</th>
+			<th>Ação</th>
 		</tr>
 		<?php 
 			$query = listUser($db);

@@ -6,35 +6,71 @@
     <title>Editar Usuário</title>
 	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
     <style type="text/css">
+		body {
+			background-color: #a5acaf;
+		}
+		#pageHeader {
+			background-color: #002244;
+		}
+		#pageHeader img {
+			width: 150px;
+		}
+		#productsControlNavigation {
+			background-color: #69be28;
+		}
+		#productsControlNavigation ul li a {
+			color:  #002244;
+		}
+		#productsControlNavigation ul li a:hover {
+			background-color: #002244;
+			color: #69be28;
+		}
 		form {
-			background-color: #fff;
 			box-sizing: border-box;
 			margin: 0 auto;
 			padding: 20px;
-			width: 500px;
+			max-width: 300px;
 		}
-		label {
-			color: #000;
-			font-weight: bold;
+		form label {
+			color: #fff;
+			margin-right: 10px;
+			width: 10%;
 		}
-		input {
-			background-color: #ddd;
+		form p {
+			background-color: #002244;
+			border-radius: 10px;
+			margin-bottom: 10px;
+			padding: 5px 10px 5px 10px;
 		}
-		input[type=file] {
-			color: #000;
+		form input[type=text], form input[type=password] {
+			background: none;
+			border: none;
+			border-bottom: solid 1px #fff;
+			color: #fff;
+			width: 75%;
 		}
-		textarea {
-			height: 200px;
-			width: 230px;
+		form input[type=text]:focus, form input[type=password]:focus {
+			outline: none;
+			border-bottom: solid 1px #69be28;
 		}
-		#prodName {
-			width: 70%;
+		form input[type=submit] {
+			background: none;
+			border: none;
+			border: solid 1px #69be28;
+			border-radius: 5px;
+			color: #69be28;	
+			float: left;
+			padding: 5px 10px;
 		}
-		#prodPrice, #prodDiscount {
-			width: 55px;
+		form p:last-child:before, form p:last-child:after {
+			content: "";
+			display: table;
+			clear: both;
 		}
-		#prodQtd {
-			width: 25px;
+		form input[type=submit]:hover {
+			background-color: #69be28;	
+			color: #002244;
+			cursor: pointer;
 		}
 		#updateSuccess {
 			color: red;
@@ -43,15 +79,36 @@
 			margin-bottom: 10px;
 			padding-bottom: 10px;
 		}
-		.searchForm {
-			background-color: #000;
-		}
 		.id {
 			display: none;
 		}
 		#message {
+			background: none;
 			color: red;
 			font-weight: bolder;
+			text-align: center;
+		}
+		#btnBack {
+			background: none;
+			border: none;
+			border: solid 1px #69be28;
+			border-radius: 5px;
+			color: #69be28;	
+			float: right;
+			padding: 5px 10px;	
+			text-decoration: none;
+		}
+		#btnBack:hover {
+			background-color: #69be28;	
+			color: #002244;
+		}
+		#idContainer {
+			background: none;
+		}
+		h2 {
+			color: #002244;
+			font-size: 25px;
+			font-weight: bold;
 			text-align: center;
 		}
 	</style>
@@ -60,8 +117,7 @@
 
 	<div id="wrapper">
 		<header id="pageHeader">
-			<h1><a href="/loja/dashboard">Dashboard</a></h1>
-			
+			<img src="../../imagems/logo.jpg" alt="logo" title="home">
 		</header>
 		
 		<nav id="productsControlNavigation">
@@ -75,8 +131,9 @@
     </div>
     
     <form method="POST" action="?id=<?php echo $_GET['id']; ?>&update=true">
+		<h2>Atualização dos dados</h2>
 		<p id="message"> <?php echo $msg; ?></p>
-		<p>
+		<p id="idContainer">
 			<input class="id" type="hidden" name="id" required value="<?php echo $result['idUsuario']; ?>">
 		</p>
 		<p>
@@ -103,8 +160,9 @@
 		</p>
 		<p>
 			<input type="submit" value="Salvar Alterações">
+			<a id="btnBack" href="../">Cancelar</a>
 		</p>
-		<a href="produtos/">Back</a>
+		
 	</form>
 	
 </body>
