@@ -25,30 +25,29 @@
 		$status = $_POST['prodStatus'];	
 		$userId = getSessionUserId();
 		$qtd = fieldValidation($_POST['prodQtd']);
-		$image = $_POST['prodImg'];	
 		$price = str_replace(",", ".", $price);
 		$discount = str_replace(",", ".", $discount);
+		$image = $_POST['prodImg'];
 		
-		if(odbc_exec($db, "INSERT INTO Produto
-							(nomeProduto, 
-							descProduto,
-							precProduto,
-							descontoPromocao,
-							idCategoria,
-							ativoProduto,
-							idUsuario,
-							qtdMinEstoque,
-							imagem)
-						VALUES 
-							('$name',
-							'$description',
-							'$price',
-							'$discount',
-							'$idCategory',
-							'$status',
-							'$userId',
-							'$qtd',
-							'$image')")) {	
+		if(isset($_FILES['prodImg']) && !empty($_FILES['prodImg']['name'])) {		
+			$file = fopen($_FILES['prodImg']['tmp_name'],'rb');
+			$image = fread($file, filesize($_FILES['prodImg']['tmp_name']));
+			fclose($file);
+		}
+
+		if($stmt = odbc_prepare($db, "INSERT INTO Produto
+								(nomeProduto,
+								 descProduto,
+								 precProduto,
+								 descontoPromocao,
+								 idCategoria,
+								 ativoProduto,
+								 idUsuario,
+								 qtdMinEstoque,
+								 imagem)
+								VALUES
+								(?,?,?,?,?,?,?,?,?)")) {
+			odbc_execute($stmt, array($name, $description, $price, $discount, $idCategory, $status, $userId, $qtd, $image));
 			odbc_close($db);
 			header("Location: ../index.php?add=success");
 		}
