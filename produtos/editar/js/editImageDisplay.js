@@ -1,3 +1,6 @@
+window.onload = function() { 
+	if(document.getElementById("imgContainer").children.length == 0) document.getElementById('imgContainer').style.paddingBottom = '80%';
+}
 function readImagesAndSetAsBackground(files) {
 	for(var i=0; i < files.length; i++) {
 		var f = files[i];

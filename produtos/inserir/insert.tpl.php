@@ -172,35 +172,34 @@
 		<p id="message"> <?php echo $msg; ?></p>
 		<div id="textDataContainer">
 			<p>
-				<label for="prodName">Nome</label><br>
+				<label for="prodName">Nome:</label><br>
 				<input type="text" id="prodName" name="prodName" required placeholder="Digite o nome do produto">
 			</p>
 			<p id="description">
-				<label for="prodDescription">Descrição</label><br>
-				<textarea type="text" id="prodDescription" name="prodDescription" placeholder="Descrição do produto"></textarea>
+				<label for="prodDescription">Descrição:</label><br>
+				<textarea id="prodDescription" name="prodDescription" placeholder="Descrição do produto"></textarea>
 			</p>
 			<div id="valuesContainer">
 				<p>	
-					<label for="prodPrice">Preço</label><br>
+					<label for="prodPrice">Preço:</label><br>
 					<input type="text" id="prodPrice" name="prodPrice" required placeholder="00.00">
 				</p>
 				<p>
-					<label for="prodDiscount">Desconto</label><br>
-					<input type="text" id="prodDiscount" name="prodDiscount" placeholder="00.00">
+					<label for="prodDiscount">Desconto:</label><br>
+					<input type="text" id="prodDiscount" name="prodDiscount" value="00.00">
 				</p>
 				<p>
-					<label for="prodQtd">Estoque</label><br>
-					<input type="text" id="prodQtd" name="prodQtd" placeholder="0">
+					<label for="prodQtd">Estoque:</label><br>
+					<input type="text" id="prodQtd" name="prodQtd" value="0">
 				</p>
 				<p>
-					<label for="prodCategory">Categoria</label><br>
+					<label for="prodCategory">Categoria:</label><br>
 					<select id="prodCategory" name="prodCategory" required>
-						<option>Selecione uma categoria</option>
 						<?php loadCatedories($db); ?>
 					</select>
 				</p>					
 				<p>
-					<label for="prodStatus">Status</label><br>
+					<label for="prodStatus">Status:</label><br>
 					<select id="prodStatus" name="prodStatus">
 						<option value="1">Ativo</option>
 						<option value="0">Inativo</option>
@@ -214,9 +213,9 @@
 		</div>
 		<div id="imageUpdateContainer">
 			<p>
-				<label for="prodImg">Imagem</label>
+				<label for="prodImg">Imagem</label><br>
 				<div id="imgContainer"></div>
-			</p>
+			
 			<p>				
 				<input type="file" id="prodImg" name="prodImg" accept="image/*" onchange="readImagesAndSetAsBackground(this.files)">
 				<input type="button" id="clearFile" value=" X " title="Excluir imagem selecionada">

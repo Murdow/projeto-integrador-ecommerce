@@ -226,7 +226,9 @@
 			<p>
 				<label for="prodImg">Imagem</label>
 				<div id="imgContainer">
-					<img id="currentImage" src="data:image/jpeg;base64,<?php $conteudo_base64 = base64_encode($result['imagem']); echo $conteudo_base64 ?>">
+					<?php if(!empty($result['imagem'])): ?>
+						<img id="currentImage" src="data:image/jpeg;base64,<?php $conteudo_base64 = base64_encode($result['imagem']); echo $conteudo_base64 ?>">
+					<?php endif; ?>
 				</div>
 			</p>
 			<p>				
@@ -236,6 +238,6 @@
 		</div>
 	</form>
 	
-	<script src="js/imageDisplayEdit.js"></script>
+	<script src="js/editImageDisplay.js"></script>
 </body>
 </html>

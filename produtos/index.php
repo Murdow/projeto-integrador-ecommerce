@@ -3,8 +3,8 @@
 	if(!isset($_SESSION['user'])) header("Location: ../login/");
 
 	$msg = "";
-	if(isset($_GET['add']) && $_GET['add'] == "success") $msg = "Usuário cadastrado com sucesso!";
-	if(isset($_GET['update']) && $_GET['update'] == "success") $msg = "Usuário alterado com sucesso!";
+	if(isset($_GET['add']) && $_GET['add'] == "success") $msg = "Produto cadastrado com sucesso!";
+	if(isset($_GET['update']) && $_GET['update'] == "success") $msg = "Produto alterado com sucesso!";
 	function loadSearchCatedories($db) { 
 		$query = odbc_exec($db, "SELECT idCategoria, nomeCategoria FROM Categoria");
 		
