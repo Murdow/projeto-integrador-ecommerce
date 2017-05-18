@@ -11,14 +11,18 @@
 		$query = odbc_exec($db, "SELECT idCategoria, nomeCategoria FROM Categoria");
 		
 		while($result = odbc_fetch_array($query)) {
-			echo "<option value='" . $result['idCategoria'] . "'>" . $result['nomeCategoria'] . "</option>";
+			echo "<option value='" . $result['idCategoria'] . "'>" . utf8_encode($result['nomeCategoria']) . "</option>";
 		}
 	}
 	$msg = "";
 	//INSERT
 	if((isset($_GET['save'])) && ($_GET['save'] == "true")) {			
 		$name = fieldValidation($_POST['prodName']);
+		$name = utf8_decode($name);
+		
 		$description = fieldValidation($_POST['prodDescription']);
+		$description = utf8_decode($description);
+		
 		$price = fieldValidation($_POST['prodPrice']);
 		$discount = fieldValidation($_POST['prodDiscount']);
 		$idCategory = $_POST['prodCategory'];

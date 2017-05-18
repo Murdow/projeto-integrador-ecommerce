@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>List</title>
 	<link rel="stylesheet" type="text/css" href="../testeestilo.css">
@@ -82,7 +82,7 @@
 			while($result = odbc_fetch_array($query)):
 		?>
 				<tr>
-					<td class='textocell'><?php echo $result['nomeProduto']; ?></td>
+					<td class='textocell'><?php echo utf8_encode($result['nomeProduto']); ?></td>
 					<td class='textocell'>R$ <?php echo number_format($result['precProduto'], 2, ',', ' '); ?></td>
 					<td class='textocell'><?php echo $result['qtdMinEstoque']; ?></td>
 					<td id='acoes'>

@@ -9,7 +9,7 @@
 		$query = odbc_exec($db, "SELECT idCategoria, nomeCategoria FROM Categoria");
 		
 		while($result = odbc_fetch_array($query)) {
-			echo "<option value='" . $result['idCategoria'] . "'>" . $result['nomeCategoria'] . "</option>";
+			echo "<option value='" . $result['idCategoria'] . "'>" . utf8_encode($result['nomeCategoria']) . "</option>";
 		}
 	}
 	

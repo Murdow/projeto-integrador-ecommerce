@@ -15,9 +15,9 @@
 		
 		while($result = odbc_fetch_array($query)) {
 			if($id == $result['idCategoria'])
-				echo "<option value='" . $result['idCategoria'] . "' selected>" . $result['nomeCategoria'] . "</option>";
+				echo "<option value='" . $result['idCategoria'] . "' selected>" . utf8_encode($result['nomeCategoria']) . "</option>";
 			else
-				echo "<option value='" . $result['idCategoria'] . "'>" . $result['nomeCategoria'] . "</option>";
+				echo "<option value='" . $result['idCategoria'] . "'>" . utf8_encode($result['nomeCategoria']) . "</option>";
 		}
 	}
 	function checkUserId($db, $userId) {
@@ -31,7 +31,11 @@
 	if((isset($_GET['update'])) && ($_GET['update'] == "true")) {			
 		if(is_numeric($_POST['prodID'])) $id = $_POST['prodID'];		
 		$name = fieldValidation($_POST['prodName']);
+		$name = utf8_decode($name);
+		
 		$description = fieldValidation($_POST['prodDescription']);
+		$description = utf8_decode($description);
+		
 		$price = fieldValidation($_POST['prodPrice']);
 		$discount = fieldValidation($_POST['prodDiscount']);
 		$idCategory = $_POST['prodCategory'];

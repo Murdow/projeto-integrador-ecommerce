@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Insert</title>
 	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
@@ -57,12 +57,36 @@
 			box-sizing: border-box;
 			padding: 5px;
 		}
-		input:focus, textarea:focus {
+		input:focus, textarea:focus, select:focus {
 			background-color: #69be28;
 			outline: none;
 		}
 		input[type=file] {			
 			padding: 0;
+		}
+		input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		  color: #555;
+		}
+		input::-moz-placeholder { /* Firefox 19+ */
+		  color: #555;
+		}
+		input:-ms-input-placeholder { /* IE 10+ */
+		  color: #555;
+		}
+		input:-moz-placeholder { /* Firefox 18- */
+		  color: #555;
+		}
+		textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		  color: #555;
+		}
+		textarea::-moz-placeholder { /* Firefox 19+ */
+		  color: #555;
+		}
+		textarea:-ms-input-placeholder { /* IE 10+ */
+		  color: #555;
+		}
+		textarea:-moz-placeholder { /* Firefox 18- */
+		  color: #555;
 		}
 		textarea {
 			height: 200px;
@@ -93,6 +117,7 @@
 		}
 		#imageUpdateContainer {
 			float: left;
+			position: relative;
 			width: 30%;
 		}
 		#valuesContainer, #description {
@@ -118,7 +143,7 @@
 			color: #a5acaf;
 		}
 		#valuesContainer p:nth-child(1), #valuesContainer p:nth-child(2), #valuesContainer p:nth-child(3) {
-			float: left;
+			display: inline-block;
 			margin-right: 30px;
 		}
 		#valuesContainer input[type=text] {
@@ -136,6 +161,8 @@
 		#imgContainer {
 			background: url('../../imagems/noImage.png') center no-repeat; 
 			background-size: cover;
+			border: solid 1px #69be28;
+			border-bottom: none;
 			max-width: 270px;
 			padding-bottom: 80%;
 			width: 100%;
@@ -145,8 +172,10 @@
 		}
 		#clearFile {
 			height: 23px;
-			margin-left: -3px;
+			right: -2px;
+			bottom: 10px;
 			padding: 0;
+			position: absolute;
 			width: 23px;
 		}
 	</style>
@@ -175,10 +204,10 @@
 				<label for="prodName">Nome:</label><br>
 				<input type="text" id="prodName" name="prodName" required placeholder="Digite o nome do produto">
 			</p>
-			<p id="description">
+			<div id="description">
 				<label for="prodDescription">Descrição:</label><br>
 				<textarea id="prodDescription" name="prodDescription" placeholder="Descrição do produto"></textarea>
-			</p>
+			</div>
 			<div id="valuesContainer">
 				<p>	
 					<label for="prodPrice">Preço:</label><br>
@@ -186,11 +215,11 @@
 				</p>
 				<p>
 					<label for="prodDiscount">Desconto:</label><br>
-					<input type="text" id="prodDiscount" name="prodDiscount" value="00.00">
+					<input type="text" id="prodDiscount" name="prodDiscount" required placeholder="00.00">
 				</p>
 				<p>
 					<label for="prodQtd">Estoque:</label><br>
-					<input type="text" id="prodQtd" name="prodQtd" value="0">
+					<input type="text" id="prodQtd" name="prodQtd" required placeholder="0">
 				</p>
 				<p>
 					<label for="prodCategory">Categoria:</label><br>
@@ -206,10 +235,10 @@
 					</select>
 				</p>
 			</div>			
-			<p id="buttons">
+			<div id="buttons">
 				<input type="submit" value="SALVAR">
 				<a href="../">CANCELAR</a>
-			</p>
+			</div>
 		</div>
 		<div id="imageUpdateContainer">
 			<p>

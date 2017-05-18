@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
@@ -56,12 +56,9 @@
 			box-sizing: border-box;
 			padding: 5px;
 		}
-		input:focus, textarea:focus {
+		input:focus, textarea:focus, select:focus {
 			background-color: #69be28;
 			outline: none;
-		}
-		input[type=file] {			
-			padding: 0;
 		}
 		textarea {
 			height: 200px;
@@ -92,6 +89,7 @@
 		}
 		#imageUpdateContainer {
 			float: left;
+			position: relative;
 			width: 30%;
 		}
 		#valuesContainer, #description {
@@ -108,7 +106,7 @@
 			color: #69be28;
 		}
 		#buttons a {
-			padding: 3px;
+			padding: 2.7px;
 			text-decoration: none;
 		}
 		#buttons a, #clearFile {
@@ -117,7 +115,7 @@
 			color: #a5acaf;
 		}
 		#valuesContainer p:nth-child(1), #valuesContainer p:nth-child(2), #valuesContainer p:nth-child(3) {
-			float: left;
+			display: inline-block;
 			margin-right: 30px;
 		}
 		#valuesContainer input[type=text] {
@@ -135,16 +133,21 @@
 		#imgContainer {
 			background: url('../../imagems/noImage.png') center no-repeat; 
 			background-size: cover;
+			border: solid 1px #69be28;
+			border-bottom: none;
 			max-width: 270px;
 			width: 100%;
 		}
 		input[type=file] {
+			padding: 0;
 			width: 91%;
 		}
 		#clearFile {
 			height: 23px;
-			margin-left: -3px;
+			right: -2px;
+			bottom: 10px;
 			padding: 0;
+			position: absolute;
 			width: 23px;
 		}
 		#userName {
@@ -181,12 +184,12 @@
 		<div id="textDataContainer">
 			<p>
 				<label for="prodName">Nome</label><br>
-				<input type="text" id="prodName" name="prodName" required value="<?php echo $result['nomeProduto']; ?>">
+				<input type="text" id="prodName" name="prodName" required value="<?php echo utf8_encode($result['nomeProduto']); ?>">
 			</p>
-			<p id="description">
+			<div id="description">
 				<label for="prodDescription">Descrição</label><br>
-				<textarea type="text" id="prodDescription" name="prodDescription"><?php echo $result['descProduto']; ?></textarea>
-			</p>
+				<textarea type="text" id="prodDescription" name="prodDescription"><?php echo utf8_encode($result['descProduto']); ?></textarea>
+			</div>
 			<div id="valuesContainer">
 				<p>	
 					<label for="prodPrice">Preço</label><br>
@@ -217,10 +220,10 @@
 					<label>Cadastrado por: <?php echo checkUserId($db, $result['idUsuario']); ?></label>
 				</p>
 			</div>			
-			<p id="buttons">
+			<div id="buttons">
 				<input type="submit" value="SALVAR">
 				<a href="../">CANCELAR</a>
-			</p>
+			</div>
 		</div>
 		<div id="imageUpdateContainer">
 			<p>
