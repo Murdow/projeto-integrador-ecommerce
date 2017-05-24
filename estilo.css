@@ -1,31 +1,3 @@
-@font-face {
-      font-family: "asasa";
-      src: url("fonts/asasa.ttf") format("truetype");
-}
-@font-face {
-      font-family: "HunDIN1451";
-      src: url("fonts/HunDIN1451.ttf") format("truetype");
-}
-@font-face {
-      font-family: "lottepaperfang";
-      src: url("fonts/lottepaperfang.ttf") format("truetype");
-}
-@font-face {
-      font-family: "onuava__";
-      src: url("fonts/onuava__.ttf") format("truetype");
-}
-@font-face {
-      font-family: "The Outbox St";
-      src: url("fonts/The Outbox St.ttf") format("truetype");
-}
-@font-face {
-      font-family: "Zoon Hoot";
-      src: url("fonts/Zoon Hoot.otf") format("truetype");
-}
-
-
-
-
 * {
 	margin: 0;
 	padding: 0;
@@ -62,7 +34,6 @@
 }
 #productsControlNavigation ul {
 	list-style: none;
-	margin-bottom:20px;
 }
 #productsControlNavigation ul li {
 	display: inline-block;
@@ -88,97 +59,12 @@
 }
 /*FIM CABEÇHALHO E NAVEGAÇÃO*/
 
-/*FORMULARIO DE PESQUISA DE PRODUTOS*/
-.searchForme{			
-	margin-left:20%;
-	margin-bottom:20px;
-}
-.borderSearch{
-	border: 6px solid #002244;
-	background-color:#002244;
-	border-radius: 6px;
-	float:left;
-	margin-right:100px;
-}
-form div input[type=text]{
-	border:none;
-	background-color:#002244;
-	border-bottom: solid 1px #fff;
-	color: #fff;
-	width: 500px;
-	height: 30px;
-	font-size:120%;
-	outline: none;
-	margin-right:5px;
-}
-.searchForme form input[type=text]:focus, .subSearch form select:focus{
-	border-bottom: solid 1px #69be28;
-}
-.searchForm1, .subSearch form input[type=submit]{
-	background-color:#002244;
-	color:#69be28;
-	border-radius: 4px;
-	border:1px solid #69be28;
-	font-size:110%;
-}
-.searchForm1{
-	height: 35px;
-	width:94px;
-}
-.subSearch form input[type=submit]{
-	height: 22px;
-	width:60px;
-}
-.searchForm1:hover, .subSearch form input[type=submit]:hover{
-	background-color:#69be28;
-	color:#002244;
-}
-
-.subSearch{
-	width:90%;
-	height:20px;
-	margin-left:8%;
-	position:relative;
-}
-.subSearch form{
-	border: 6px solid #002244;
-	background-color:#002244;
-	border-radius: 6px;
-	color:#fff;
-	margin-bottom:20px;
-	margin-right:20px;
-}
-.subSearch form input, .subSearch form select {
-	border:none;
-	background-color:#002244;
-	border-bottom: solid 1px #fff;
-	color: #fff;
-	outline: none;
-	font-size:105%;
-	margin-right:5px;
-}
-
-/*FIM FORMULARIO DE PESQUISA DE PRODUTOS*/
-
-/* BARRA LATERAL*/
-aside {
-	width:15%;
-	height:300px;
-	background-color:green;
-	float:left;
-	margin-top:40px;}
-/*FIM BARRA LATERAL*/
-
 
 /*TABLE FOR SEARCH TEST*/
 table {
 	width: 90%;
     margin: 3% auto auto 5%;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.6); 
-}
-#produto{
-	width: 70%;
-	float:left;
 }
 tr:nth-child(odd) {
 	background-color: #f8f8f8;
@@ -216,7 +102,6 @@ td, th {
 			background-color:#002244;
 			position: absolute;
 			margin-left:50%;
-			margin-top:4px;
 			left:-200px;
 			width:400px;
 			border-radius: 3px;

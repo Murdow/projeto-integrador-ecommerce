@@ -12,7 +12,9 @@
 
 	<div id="wrapper">
 		<header id="pageHeader">
-			<h1><a href="/loja/dashboard">Dashboard</a></h1>
+			<a href="../dashboard">
+				<img src="../imagems/logo.jpg" alt="logo" title="home">
+			</a>
 			<h2> Bem Vindo <?php echo getSessionUserName();?>!</h2>
 		</header>
 		
@@ -28,9 +30,9 @@
     
     <?php checkAction($db); ?>
     <article>
-        <a href="?action=list"><div id="esquerda" class="bannerdash">Produtos</div></a>
-        <a href="edit.php?action=update"><div id="meio" class="bannerdash">Categorias</div></a>
-        <a href="edit.php?action=update"><div id="direita" class="bannerdash">Usuarios</div></a>
+        <a href="../produtos/"><div id="esquerda" class="bannerdash"><div class="fundo"><p>Produtos</p></div></div></a>
+        <a href="../categorias/"><div id="meio" class="bannerdash"><div class="fundo"><p>Categorias</p></div></div></a>
+        <a href="../usuarios"><div id="direita" class="bannerdash"><div class="fundo"><p>Usuarios</p></div></div></a>
     </article>
 </body>
 </html>

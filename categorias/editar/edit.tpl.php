@@ -6,30 +6,13 @@
     <title>Editar Usuário</title>
 	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
     <style type="text/css">
-		body {
-			background-color: #a5acaf;
-		}
-		#pageHeader {
-			background-color: #002244;
-		}
-		#pageHeader img {
-			width: 150px;
-		}
-		#productsControlNavigation {
-			background-color: #69be28;
-		}
-		#productsControlNavigation ul li a {
-			color:  #002244;
-		}
-		#productsControlNavigation ul li a:hover {
-			background-color: #002244;
-			color: #69be28;
-		}
+
+		
 		form {
 			box-sizing: border-box;
 			margin: 0 auto;
 			padding: 20px;
-			max-width: 320px;
+			max-width: 350px;
 		}
 		form label {
 			color: #fff;
@@ -42,14 +25,27 @@
 			margin-bottom: 10px;
 			padding: 5px 10px 5px 10px;
 		}
-		form input[type=text], form input[type=password] {
+		textarea {
+			height: 200px;
+			width: 190px;
+			background: #3d5f81;
+			border: none;
+			border-bottom: solid 1px #fff;
+			color: #fff;
+		}
+		textarea:focus {
+			outline: none;
+			border-bottom: solid 1px #69be28;
+		}
+		
+		form input[type=text]{
 			background: none;
 			border: none;
 			border-bottom: solid 1px #fff;
 			color: #fff;
 			width: 75%;
 		}
-		form input[type=text]:focus, form input[type=password]:focus {
+		form input[type=text]:focus {
 			outline: none;
 			border-bottom: solid 1px #69be28;
 		}
@@ -60,6 +56,7 @@
 			border-radius: 5px;
 			color: #69be28;	
 			float: left;
+			font-size:100%;
 			padding: 5px 10px;
 		}
 		form p:last-child:before, form p:last-child:after {
@@ -93,9 +90,9 @@
 			border: none;
 			border: solid 1px #69be28;
 			border-radius: 5px;
-			color: #69be28;	
+			color: #69be28;
 			float: right;
-			padding: 5px 10px;	
+			padding: 5px 10px;
 			text-decoration: none;
 		}
 		#btnBack:hover {
@@ -114,37 +111,23 @@
 	</style>
 </head>
 <body>
-
 	<?php  include("../../menu.in.php")?>
     
     <form method="POST" action="?id=<?php echo $_GET['id']; ?>&update=true">
 		<h2>Atualização dos dados</h2>
 		<p id="message"> <?php echo $msg; ?></p>
 		<p id="idContainer">
-			<input class="id" type="hidden" name="id" required value="<?php echo $result['idUsuario']; ?>">
+			<input class="id" type="hidden" name="id" required value="<?php echo $result['idCategoria']; ?>">
 		</p>
 		<p>
 			<label>Nome:</label>
-			<input type="text" id="name" name="name" required value="<?php echo $result['nomeUsuario']; ?>">
+			<input type="text" id="name" name="name" required value="<?php echo $result['nomeCategoria']; ?>">
 		</p>
 		<p>	
-			<label>login: </label>
-			<input type="text" id="login" name="login" required value="<?php echo $result['loginUsuario']; ?>">
+			<label>Descrição: </label>
+			<textarea type="text" id="Description" name="Description"><?php echo $result['descCategoria']; ?></textarea>
 		</p>
-		<p>
-			<label>Senha: </label>
-			<input type="password" id="password" name="password" required value="">
-		</p>
-		<p>
-			<label>Perfil:	</label>
-			<select name="profile">
-				<?php checkProfileType($db); ?>
-			</select>
-		</P>
-		<p>
-			<label>Ativo: </label>
-			<?php checkProfileStatus($db); ?>
-		</p>
+		
 		<p>
 			<input type="submit" value="Salvar Alterações">
 			<a id="btnBack" href="../">Cancelar</a>

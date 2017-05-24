@@ -5,91 +5,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Usuários</title>
 	<link rel="stylesheet" type="text/css" href="../testeestilo.css">
-    <style type="text/css">
-    	body {
-			background-color: #a5acaf;
-		}
-		#pageHeader {
-			background-color: #002244;
-		}
-		#pageHeader img {
-			width: 150px;
-		}
-		td {
-    		text-align: left!important;
-    	}
-		#productsControlNavigation {
-			background-color: #69be28;
-		}
-		#productsControlNavigation ul li a {
-			color:  #002244;
-		}
-		#productsControlNavigation ul li a:hover {
-			background-color: #002244;
-			color: #69be28;
-		}
-    	form {
-    		display: inline-block;
-    	}
-    	#actionMsg {
-			color: green;
-			font-weight: bold;
-			text-align: center;
-		}
-		#pradNavigation {
-			text-align: center;
-			width: 100%;
-		}
-		#btnContainer {
-			margin-top: 20px;
-			padding-right: 60px;
-			text-align: right;
-		}
-		#addNew {
-			background-color: #002244;
-			border-radius: 2px;
-			color: #69be28;
-			padding: 5px 10px;
-			text-decoration: none;
-		}
-		#addNew:hover {
-			background-color: #69be28;
-			color: #002244;
-			font-weight: bold;
-		}
-		.edita, .deleta {
-			padding: 5px 10px;
-			text-align: center;
-			text-decoration: none;
-		}
-		.edita {
-			background-color: #69be28;
-			color: #002244;
-		}
-		.deleta {
-			background-color: #002244;
-			color: #69be28;
-		}
-    </style>
+    
 </head>
 <body>
+	<?php  include("../menu.php")?>
 
-	<div id="wrapper">
-		<header id="pageHeader">
-			<!--<h1><a href="/loja/dashboard">Dashboard</a></h1>-->
-			<img src="../imagems/logo.jpg" alt="logo" title="home">
-			
-		</header>
-		
-		<nav id="productsControlNavigation">
-			<ul>
-				<li><a href="../produtos/">PRODUTOS</a></li>
-				<li><a href="../categorias/">CATEGORIAS</a></li>
-				<li><a href="../usuarios/">USUARIOS</a></li>
-				<li><a href="../login/?session=finish">Sair</a></li>
-			</ul>	
-		</nav>
-    </div>
 	<div id="btnContainer">
 		 <?php
 			if(getSessionUserType() === "A")

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html" charset="ISO-8859-1" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>List</title>
 	<link rel="stylesheet" type="text/css" href="../testeestilo.css">
@@ -12,11 +12,7 @@
     	form {
     		display: inline-block;
     	}
-    	#actionMsg {
-			color: green;
-			font-weight: bold;
-			text-align: center;
-		}
+    	
 		#pradNavigation {
 			text-align: center;
 			width: 100%;
@@ -25,51 +21,55 @@
 </head>
 <body>
 
-	<div id="wrapper">
-		<header id="pageHeader">
-			<h1><a href="/loja/dashboard">Dashboard</a></h1>
-			
-		</header>
-		
-		<nav id="productsControlNavigation">
-			<ul>
-				<li><a href="../produtos/">PRODUTOS</a></li>
-				<li><a href="../categorias/">CATEGORIAS</a></li>
-				<li><a href="../usuarios/">USUARIOS</a></li>
-				<li><a href="../login/?session=finish">Sair</a></li>
-			</ul>	
-		</nav>
-    </div>
+	<?php  include("../menu.php")?>
     
     <nav id="pradNavigation">
-	    <form class="searchForm" method="GET">
-			<label>Categorias: </label>
-			<select name="searchByCategory">
-				<option value="0">Todos</option>
-				<?php loadSearchCatedories($db); ?>
-			</select>
-			<input type="submit" value="Buscar">
-		</form>
-		<form class="searchForm" method="GET">	
-			<label>Busca por nome: </label>
-			<input type="text" name="searchByName" placeholder="Digite o nome de um produto">
-			<input type="submit" value="Search">
-			<a id="addNew" href="inserir/">Adicionar novo produto</a>
-		</form>
-		<form class="searchForm" method="GET">
-			<label>Organizar por: </label>
-			<select name="sort">
-				<option>Selecione uma opção</option>
-				<option value="1">Preço menor para maior</option>
-				<option value="2">Preço maior para menor</option>
-				<option value="3">Esqoque menor para maior</option>
-				<option value="4">Estoque maior para menor</option>
-			</select>
-			<input type="submit" value="OK">
-		</form>
+		<div class="searchForme" >
+			<form method="GET" action="/pi/produtos/?Name=3" >	
+				<div class="borderSearch">	
+					
+					<input type="text" name="searchByName" placeholder="Pesquisar produto">
+					<input type='hidden' name='tipoA' value='1'>
+					<?php echo ComboB($pesquisaB);?>
+					<?php echo comboC($pesquisaC);?>
+					<input type="submit" class="searchForm1"  value="Pesquisar">
+				</div>
+				<a id="addNew" href="inserir/">Adicionar novo produto</a>
+			</form>
+		</div>
+		
+		<div class="subSearch">	
+			<form class="searchForm" method="GET" >
+				<label>Categorias: </label>
+				<select name="searchByCategory">
+					<option value="0">Todos</option>
+					<?php loadSearchCatedories($db); ?>
+				</select>
+				<?php echo ComboA($pesquisa);?>
+				<?php echo comboC($pesquisaC);?>
+				<input type='hidden' name='tipoB' value='1'>
+				<input type="submit" value="Buscar">
+			</form>
+			
+			<form class="searchForm" method="GET">
+				<label>Organizar por: </label>
+				<select name="sort">
+					<option>Selecione uma opção</option>
+					<option value="1">Preço menor para maior</option>
+					<option value="2">Preço maior para menor</option>
+					<option value="3">Estoque menor para maior</option>
+					<option value="4">Estoque maior para menor</option>
+				</select>
+				<input type='hidden' name='tipoC' value='1'>
+				<?php echo ComboA($pesquisa);?>
+				<?php echo ComboB($pesquisaB);?>
+				<input type="submit" value="OK">
+			</form>
+		</div><br>
 	</nav>
 	<p id="actionMsg"><?php echo $msg; ?></p>
-	<table cellspacing='0'>
+	
+	<table  cellspacing='0'>
 		<tr>
 			<th>Name</th>
 			<th>Price</th>
@@ -82,14 +82,14 @@
 			while($result = odbc_fetch_array($query)):
 		?>
 				<tr>
-					<td class='textocell'><?php echo utf8_encode($result['nomeProduto']); ?></td>
+					<td class='textocell'><?php echo $result['nomeProduto']; ?></td>
 					<td class='textocell'>R$ <?php echo number_format($result['precProduto'], 2, ',', ' '); ?></td>
 					<td class='textocell'><?php echo $result['qtdMinEstoque']; ?></td>
 					<td id='acoes'>
-						<?php if($result['idProduto'] > 10): ?>
+						
 							<a class='edita' href="editar/?id=<?php echo $result['idProduto']; ?>">Edit</a>
 							<a class='deleta' href="?action=delete&id=<?php echo $result['idProduto']; ?>">Delete</a>
-						<?php endif; ?>
+						
 					</td>
 				</tr>
 			<?php endwhile; odbc_close($db);?>
