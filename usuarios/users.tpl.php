@@ -16,7 +16,7 @@
     		<div class="searchByNameContainer">
     			<div class="borderSearch">					
 					<input type="text" name="searchByName" placeholder="Digite o nome" value="<?php if(isset($_GET['searchByName']) && $_GET['searchByName'] != '') echo $_GET['searchByName']; ?>">	
-					<input type="submit" class="searchForm1" value="Pesquisar">
+					<input type="image" name="search" src="../imagems/searchIcon.png" alt="botão busca">
 				</div>				
     		</div>
     		<!--End Search By Name-->
