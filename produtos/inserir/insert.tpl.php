@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Insert</title>
 	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
@@ -12,246 +12,118 @@
 			padding: 0;
 		}
 		body {
-			background-color: #a5acaf;
+			background-color: #fff;
+			text-align: left;
 		}
-		#pageHeader {
-			background-color: #002244;
-		}
-		#pageHeader img {
-			width: 150px;
-		}
-		td {
-    		text-align: left!important;
-    	}
-		#productsControlNavigation {
-			background-color: #69be28;
-		}
-		#productsControlNavigation ul li a {
-			color:  #002244;
-		}
-		#productsControlNavigation ul li a:hover {
-			background-color: #002244;
-			color: #69be28;
+		#addNew, #delete {
+			color: #000;
+			background-color: #ddd;
+			border: solid 1px #aaa;
+			padding: .3px 0;
+			text-decoration: none;
 		}
 		form {
-			background-color: #002244;
+			background-color: #fff;
+			border: solid 5px #000;
 			box-sizing: border-box;
-			font-family: 'Roboto';
-			margin: 50px auto;
-			padding: 20px 50px;
-			max-width: 1000px;
-			width: 100%;
-		}
-		.clearFix:before, .clearFix:after {
-			content: "";
-			display: table;
-			clear: both;
+			margin: 0 auto;
+			padding: 20px;
+			width: 500px;
 		}
 		label {
-			color: #69be28;
+			color: #000;
 			font-weight: bold;
 		}
-		input, textarea, select {
-			background-color: #a5acaf;
-			border: solid 1px #69be28;
-			box-sizing: border-box;
-			padding: 5px;
+		input {
+			background-color: #ddd;
 		}
-		input:focus, textarea:focus, select:focus {
-			background-color: #69be28;
-			outline: none;
-		}
-		input[type=file] {			
-			padding: 0;
-		}
-		input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-		  color: #555;
-		}
-		input::-moz-placeholder { /* Firefox 19+ */
-		  color: #555;
-		}
-		input:-ms-input-placeholder { /* IE 10+ */
-		  color: #555;
-		}
-		input:-moz-placeholder { /* Firefox 18- */
-		  color: #555;
-		}
-		textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-		  color: #555;
-		}
-		textarea::-moz-placeholder { /* Firefox 19+ */
-		  color: #555;
-		}
-		textarea:-ms-input-placeholder { /* IE 10+ */
-		  color: #555;
-		}
-		textarea:-moz-placeholder { /* Firefox 18- */
-		  color: #555;
+		input[type=file] {
+			color: #000;
 		}
 		textarea {
-			height: 200px;
-			resize: none;
+			height: 400px;
 			width: 230px;
+		}
+		#prodName {
+			width: 70%;
+		}
+		#prodPrice, #prodDiscount {
+			width: 55px;
+		}
+		#prodQtd {
+			width: 25px;
 		}
 		#updateSuccess {
 			color: red;
 		}
 		p {		
 			margin-bottom: 10px;
+			padding-bottom: 10px;
 		}
-		#description * {
-			vertical-align: top;
+		.searchForm {
+			background-color: #000;
 		}
-		#description {
-			margin-right: 10px;
+		.id {
+			display: none;
 		}
 		#message {
 			color: red;
 			font-weight: bolder;
 			text-align: center;
 		}
-		#textDataContainer {
-			float: right;
-			position: relative;
-			width: 60%;
-		}
-		#imageUpdateContainer {
-			float: left;
-			position: relative;
-			width: 30%;
-		}
-		#valuesContainer, #description {
-			float: left;
-		} 
-		#buttons {
-			position: absolute;
-			bottom: 0;
-			left: 242px;
-		}
-		#buttons input[type=submit] {
-			background-color: #002244;
-			border: solid 1px #69be28;
-			color: #69be28;
-		}
-		#buttons a {
-			padding: 3px;
-			text-decoration: none;
-		}
-		#buttons a, #clearFile {
-			background-color: #002244;
-			border: solid 1px #a5acaf;
-			color: #a5acaf;
-		}
-		#valuesContainer p:nth-child(1), #valuesContainer p:nth-child(2), #valuesContainer p:nth-child(3) {
-			display: inline-block;
-			margin-right: 30px;
-		}
-		#valuesContainer input[type=text] {
-			text-align: center;
-		}
-		#valuesContainer p:nth-child(3) {
-			margin-right: 0;
-		}
-		#prodPrice, #prodDiscount, #prodQtd {
-			max-width: 70px;
-		}
-		#prodName {
-			width: 100%;
-		}
-		#imgContainer {
-			background: url('../../imagems/noImage.png') center no-repeat; 
-			background-size: cover;
-			border: solid 1px #69be28;
-			border-bottom: none;
-			max-width: 270px;
-			padding-bottom: 80%;
-			width: 100%;
-		}
-		input[type=file] {
-			width: 91%;
-		}
-		#clearFile {
-			height: 23px;
-			right: -2px;
-			bottom: 10px;
-			padding: 0;
-			position: absolute;
-			width: 23px;
-		}
 	</style>
 </head>
 <body>
 
-	<div id="wrapper">
-		<header id="pageHeader">
-			<img src="../../imagems/logo.jpg" alt="logo" title="home">
-		</header>
-		
-		<nav id="productsControlNavigation">
-			<ul>
-				<li><a href="../../produtos/">PRODUTOS</a></li>
-				<li><a href="../../categorias/">CATEGORIAS</a></li>
-				<li><a href="../../usuarios/">USUARIOS</a></li>
-				<li><a href="../../login/?session=finish">Sair</a></li>
-			</ul>	
-		</nav>
-    </div>
+	<?php  include("../../menu.in.php")?>
     
-    <form enctype="multipart/form-data" method="POST" action="?save=true" class="clearFix">
+    <form method="POST" action="?save=true">
 		<p id="message"> <?php echo $msg; ?></p>
-		<div id="textDataContainer">
-			<p>
-				<label for="prodName">Nome:</label><br>
-				<input type="text" id="prodName" name="prodName" required placeholder="Digite o nome do produto">
-			</p>
-			<div id="description">
-				<label for="prodDescription">Descrição:</label><br>
-				<textarea id="prodDescription" name="prodDescription" placeholder="Descrição do produto"></textarea>
-			</div>
-			<div id="valuesContainer">
-				<p>	
-					<label for="prodPrice">Preço:</label><br>
-					<input type="text" id="prodPrice" name="prodPrice" required placeholder="00.00">
-				</p>
-				<p>
-					<label for="prodDiscount">Desconto:</label><br>
-					<input type="text" id="prodDiscount" name="prodDiscount" required placeholder="00.00">
-				</p>
-				<p>
-					<label for="prodQtd">Estoque:</label><br>
-					<input type="text" id="prodQtd" name="prodQtd" required placeholder="0">
-				</p>
-				<p>
-					<label for="prodCategory">Categoria:</label><br>
-					<select id="prodCategory" name="prodCategory" required>
-						<?php loadCatedories($db); ?>
-					</select>
-				</p>					
-				<p>
-					<label for="prodStatus">Status:</label><br>
-					<select id="prodStatus" name="prodStatus">
-						<option value="1">Ativo</option>
-						<option value="0">Inativo</option>
-					</select>
-				</p>
-			</div>			
-			<div id="buttons">
-				<input type="submit" value="SALVAR">
-				<a href="../">CANCELAR</a>
-			</div>
-		</div>
-		<div id="imageUpdateContainer">
-			<p>
-				<label for="prodImg">Imagem</label><br>
-				<div id="imgContainer"></div>
-			
-			<p>				
-				<input type="file" id="prodImg" name="prodImg" accept="image/*" onchange="readImagesAndSetAsBackground(this.files)">
-				<input type="button" id="clearFile" value=" X " title="Excluir imagem selecionada">
-			</p>		
-		</div>
+		<p>
+			<label>Nome:</label>
+			<input type="text" id="prodName" name="prodName" placeholder="Digite o nome do produto">
+		</p>
+		<p>	
+			<label>Preço:</label>
+			<input type="text" id="prodPrice" name="prodPrice" placeholder="00.00">
+		</p>
+		<p>
+			<label>Descrição:</label>
+			<textarea type="text" id="prodDescription" name="prodDescription" placeholder="Descrição do produto"></textarea>
+		</p>
+		<p>
+			<label>Categoria:</label>
+			<select id="prodCategory" name="prodCategory">
+				<option>Selecione uma categoria</option>
+				<?php loadCatedories($db); ?>
+			</select>
+		</p>
+		<p>
+			<label>Imagem:</label>
+			<input type="file" id="prodImg" name="prodImg" accept="image/*">
+		</p>
+		<p>
+			<label>Estoque:</label>
+			<input type="text" id="prodQtd" name="prodQtd" value="0">
+		</p>
+		<p>
+			<label>Desconto:</label>
+			<input type="text" id="prodDiscount" name="prodDiscount" value="00.00">
+		</p>
+		<p>
+			<label>Status:</label>
+			<select id="prodStatus" name="prodStatus">
+				<option value="1">Ativo</option>
+				<option value="0">Inativo</option>
+			</select>
+		</p>
+		<p>
+			<label>Cadastrado por: <?php echo checkUserId($db, getSessionUserId()); ?></label>
+		</p>
+		<p>
+			<input type="submit" value="Salvar Produto">
+		</p>
 	</form>
 	
-	<script src="js/imageDisplay.js"></script>
 </body>
 </html>

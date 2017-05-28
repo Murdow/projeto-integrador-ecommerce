@@ -10,6 +10,19 @@
 			padding: 0;
 			margin: 0;
 		}
+		
+		textarea {
+			height: 200px;
+			width: 190px;
+			background: #3d5f81;
+			border: none;
+			border-bottom: solid 1px #fff;
+			color: #fff;
+		}
+		textarea:focus {
+			outline: none;
+			border-bottom: solid 1px #69be28;
+		}
 		body {
 			background-color: #a5acaf;
 		}
@@ -23,16 +36,7 @@
 			margin: 0 auto;
 			width: 30%;
 		}
-		#productsControlNavigation {
-			background-color: #69be28;
-		}
-		#productsControlNavigation ul li a {
-			color:  #002244;
-		}
-		#productsControlNavigation ul li a:hover {
-			background-color: #002244;
-			color: #69be28;
-		}
+		
 		h2 {
 			background-color: #002244;
 			border-bottom: solid 4px #69be28;	
@@ -45,7 +49,7 @@
 		}
 		form {
 			margin-top: 50px;
-			max-width: 300px;
+			max-width: 310px;
 		}
 		form label {
 			color: #fff;
@@ -64,15 +68,16 @@
 			display: inline-block;
 			padding-bottom: 10px;
 		}
-		form input[type=text], form input[type=password] {
+		form input[type=text]{
 			background: none;
 			border: none;
 			border-bottom: solid 1px #fff;
 			color: #fff;
 			width: 75%;
 		}
-		form input[type=text]:focus, form input[type=password]:focus {
+		form input[type=text]:focus{
 			outline: none;
+			border-bottom: solid 1px #69be28;
 		}
 		form input[type=submit] {
 			background: none;
@@ -82,6 +87,7 @@
 			color: #69be28;	
 			float: left;
 			padding: 5px 10px;
+			font-size:100%;
 		}
 		form p:last-child:before, form p:last-child:after {
 			content: "";
@@ -113,33 +119,19 @@
 	<?php  include("../../menu.in.php")?>
 	
     <form method="POST">
-	<h2>Cadastro</h2>
+	<h2>Criar Categoria</h2>
 		<p id="erroMsg"><?php echo $erro; ?></p>
 		<p>
-			<label>Nome: </label>
-			<input type="text" name="nome">
+			<label>Nome:</label>
+			<input type="text" id="name" name="name" required >
 		</p>
-		<p>
-			<label>login: </label>
-			<input type="text" name="login">
+		<p>	
+			<label>Descrição: </label>
+			<textarea type="text" id="Description" name="Description"></textarea>
 		</p>
+		
 		<p>
-			<label>Senha: </label>
-			<input type="password" name="senha">
-		</p>
-		<p>
-			<label>Perfil:	</label>
-			<select name="perfil">
-				<option value="A">Administrador</option>
-				<option value="E">Funcionário</option>
-			</select>
-		</P>
-		<p>
-			<label>Ativo: </label>
-			<input type="checkbox" name="ativo" checked><br><br>
-		</p>
-		<p>
-			<input type="submit" value="Gravar" name="btnNovoUsuario">
+			<input type="submit" value="Salvar" name="btnNovaCategoria">
 			<a id="btnBack" href="../">Cancelar</a>			
 		</p>
 	</form>
