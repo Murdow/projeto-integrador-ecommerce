@@ -16,12 +16,12 @@
 	if((isset($_GET['update'])) && ($_GET['update'] == "true")) {			
 		if(is_numeric($_POST['id'])) $id = $_POST['id'];		
 		//trata categoria
-			$nome = $_POST['name'];
+			$nome = utf8_decode($_POST['name']);
 			$nome = str_replace('"','',$nome);
 			$nome = str_replace("'",'',$nome);
 			$nome = str_replace(';','',$nome);
 			
-			$desc = $_POST['Description'];
+			$desc = utf8_decode($_POST['Description']);
 			$desc = str_replace('"','',$desc);
 			$desc = str_replace("'",'',$desc);
 			$desc = str_replace(';','',$desc);

@@ -5,11 +5,23 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Usuários</title>
 	<link rel="stylesheet" type="text/css" href="../testeestilo.css">
-    
+    <script src="https://use.fontawesome.com/11638b2227.js"></script>	
 </head>
 <body>
-	<?php  include("../menu.php")?>
 
+	<?php include("../menu.php"); ?>
+	<nav id="prodNavigation">
+    	<form method="GET" id="searchForm">
+    		<!--Search By Name-->
+    		<div class="searchByNameContainer">
+    			<div class="borderSearch">					
+					<input type="text" name="searchByName" placeholder="Digite o nome" value="<?php if(isset($_GET['searchByName']) && $_GET['searchByName'] != '') echo $_GET['searchByName']; ?>">	
+					<input type="submit" class="searchForm1" value="Pesquisar">
+				</div>				
+    		</div>
+    		<!--End Search By Name-->
+    	</form>
+	</nav>
 	<div id="btnContainer">
 		 <?php
 			if(getSessionUserType() === "A")
@@ -32,17 +44,17 @@
 		?>
 				<tr>
 					<td class='textocell'><?php echo $result['nomeUsuario']; ?></td>
-					<td class='textocell'><?php echo $result['tipoPerfil']; ?></td>
-					<td class='textocell'><?php echo $result['usuarioAtivo']; ?></td>
+					<td class='textocell'><?php echo checkType($result['tipoPerfil']); ?></td>
+					<td class='textocell'><?php echo checkStatus($result['usuarioAtivo']); ?></td>
 					<td id='acoes'>
 						<?php if($result['idUsuario'] > 1 && getSessionUserType() === "A"): ?>
-							<a class='edita' href="editar/?id=<?php echo $result['idUsuario']; ?>">Edit</a>
-							<a class='deleta' href="?action=delete&id=<?php echo $result['idUsuario']; ?>">Delete</a>
+							<a class='edita' href="editar/?id=<?php echo $result['idUsuario']; ?>" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+							<a class='deleta' href="?action=delete&id=<?php echo $result['idUsuario']; ?>" title="Deletar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 						<?php endif; ?>
 					</td>
 				</tr>
 			<?php endwhile; odbc_close($db);?>
 	</table>
-	
+	<?php include("../footer.tpl.php") ?>
 </body>
 </html>

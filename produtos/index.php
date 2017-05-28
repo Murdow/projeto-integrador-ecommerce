@@ -5,91 +5,66 @@
 	$msg = "";
 	if(isset($_GET['add']) && $_GET['add'] == "success") $msg = "Produto cadastrado com sucesso!";
 	if(isset($_GET['update']) && $_GET['update'] == "success") $msg = "Produto alterado com sucesso!";
+	
+	function listProducts($db) {
+		$searchByNameQuery = ""; 
+		$searchByCategoryQuery = ""; 
+		$sortQuery = "";
+		if(isset($_GET['searchByName']) && $_GET['searchByName'] != "") {
+			$name = $_GET['searchByName'];
+			$searchByNameQuery = "WHERE nomeProduto LIKE '%$name%'";
+		}
+		if(isset($_GET['searchByCategory']) && $_GET['searchByCategory'] != "") {
+			$category = $_GET['searchByCategory'];
+			if(isset($_GET['searchByName']) && $_GET['searchByName'] != "")
+				$searchByCategoryQuery = " AND idCategoria = $category";
+			else
+				$searchByCategoryQuery = " WHERE idCategoria = $category";
+			if($_GET['searchByCategory'] == "0")
+				$searchByCategoryQuery ="";
+		}
+		if(isset($_GET['sort']) && $_GET['sort'] != "") {
+			$sort = $_GET['sort'];
+			switch ($sort) {
+				case '1':
+					$sortQuery = " ORDER BY precProduto ASC";
+					break;
+				case '2':
+					$sortQuery = " ORDER BY precProduto DESC";
+					break;
+				case '3':
+					$sortQuery = " ORDER BY qtdMinEstoque ASC";
+					break;
+				case '4':
+					$sortQuery = " ORDER BY qtdMinEstoque DESC";
+					break;				
+			}	
+		}
+		$query = odbc_exec($db, "SELECT idProduto, nomeProduto, precProduto, qtdMinEstoque, ativoProduto FROM Produto " . $searchByNameQuery . $searchByCategoryQuery . $sortQuery);
+		
+		return $query;
+	}
+
 	function loadSearchCatedories($db) { 
 		$query = odbc_exec($db, "SELECT idCategoria, nomeCategoria FROM Categoria");
-		
+	
 		while($result = odbc_fetch_array($query)) {
-			echo "<option value='" . $result['idCategoria'] . "'>" . $result['nomeCategoria'] . "</option>";
+			if($_GET['searchByCategory'] == $result['idCategoria'])
+				echo "<option selected value='" . $result['idCategoria'] . "'>" . utf8_encode($result['nomeCategoria']) . "</option>";
+			else
+				echo "<option value='" . $result['idCategoria'] . "'>" . utf8_encode($result['nomeCategoria']) . "</option>";
 		}
 	}
-	
-	//Pesquisas combinadas
-		
-		//===EXIBE ERROS===//
-		if(isset($_GET['searchByCategory'])){
-			if(isset($_GET['searchByCategory']) && $_GET['searchByCategory'] != "0") {
-			}else{
-				$msg= "Selecione uma categoria válida!";
-			}
+
+	function loadSortFields() {
+		$fields = array("Preço menor para maior", "Preço maior para menor", "Esqoque menor para maior", "Estoque maior para menor");
+		for($i = 1; $i < 5; $i++) {
+			if(isset($_GET['sort']) && $_GET['sort'] == $i)
+				echo "<option selected value='" . $i . "'>" . $fields[$i-1] . "</option>";
+			else
+				echo "<option value='" . $i . "'>" . $fields[$i-1] . "</option>";
 		}
-		if(isset($_GET['sort'])){
-			if(isset($_GET['sort']) && $_GET['sort'] >= 1 && $_GET['sort'] <= 4){
-			}else{
-				$msg= "Selecione um organizador válido!";
-			}
-		}
-		//==================//
-		
-		//barra de pesquisa//
-		if(isset($_GET['searchByName'])&& isset($_GET['tipoA'])){
-			if($_GET['tipoA']=1){
-				$tipo = 1;
-				$pesquisa = $_GET['searchByName'];
-			}
-		}elseif(isset($_GET['searchByName'])){
-			$pesquisa = $_GET['searchByName'];
-			$tipo = 2;
-		}else{
-			$pesquisa = null;
-		}
-		
-		function comboA($pesquisa){
-			if(isset($pesquisa)){
-				echo "<input type='hidden' name='searchByName' value='$pesquisa'>";
-			}
-		}
-		//===========================//
-		
-		//Menu categorias//
-		if(isset($_GET['searchByCategory'])&& isset($_GET['tipoB'])){
-			if($_GET['tipoB']=1){
-				$tipo = 1;
-				$pesquisaB = $_GET['searchByCategory'];
-			}
-		}elseif(isset($_GET['searchByCategory'])) {
-			$pesquisaB = $_GET['searchByCategory'];
-			$tipo = 2;
-		}else{
-			$pesquisaB = null;
-		}
-		
-		function comboB($pesquisaB){
-			if(isset($pesquisaB)){
-				echo "<input type='hidden' name='searchByCategory' value='$pesquisaB'>";
-			}
-		}
-		//===========================//
-	
-		//Menu do seletor//
-		if(isset($_GET['sort'])&& isset($_GET['tipoC'])){
-			if($_GET['tipoC']=1){
-				$tipo = 1;
-				$pesquisaC = $_GET['sort'];
-			}
-		}elseif(isset($_GET['sort'])){
-			$pesquisaC = $_GET['sort'];
-			$tipo = 2;
-		}else {
-			$pesquisaC = null;
-		}
-			
-		function comboC($pesquisaC){
-			if(isset($pesquisaC)){
-				echo "<input type='hidden' name='sort' value='$pesquisaC'>";
-			}
-		}	
-		//==========================//
-	//Fim das pesquisas combinadas
+	}
 	
 	if((isset($_GET['action'])) && ($_GET['action'] == "delete")) {
 		if(is_numeric($_GET['id'])) {
@@ -105,6 +80,11 @@
 				$GLOBALS['msg'] = "Produto não existe!";
 		}
 		
+	}
+
+	function checkStatus($status) {
+		if($status == 1) return "Ativo";
+		else return "Inativo";
 	}
 	include "products.tpl.php";
 ?>

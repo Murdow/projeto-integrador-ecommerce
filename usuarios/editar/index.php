@@ -4,36 +4,27 @@
 	if(isset($_SESSION['type']) && $_SESSION['type'] != "A") header("Location: ../../dashboard/");
 
 	if(isset($_GET['id'])) {
-		$id = $_GET['id'];
+		if(is_numeric($_GET['id'])) $id = $_GET['id'];
 		$query = odbc_exec($db, "SELECT * FROM Usuario WHERE idUsuario = '$id'");
 		$result = odbc_fetch_array($query);
 	}
-	function checkProfileType($db) {
-		$id = $_GET['id'];
-		$query = odbc_exec($db, "SELECT tipoPerfil FROM Usuario WHERE idUsuario = '$id'");
-		while($result = odbc_fetch_array($query)) {
-			if($result['tipoPerfil'] == "A") {
-				echo "<option value='" . $result['tipoPerfil'] . "' selected>Administrador</option>";
-				echo "<option value='E'>Funcionário</option>";				
-			}
-			else {
-				echo "<option value='" . $result['tipoPerfil'] . "' selected>Funcionário</option>";	
-				echo "<option value='A'>Administrador</option>";				
-			}
+	function checkProfileType($type) {
+		if(is_numeric($_GET['id'])) $id = $_GET['id'];
+
+		if($type == "A") {
+			echo "<option value='" . $result['tipoPerfil'] . "' selected>Administrador</option>";
+			echo "<option value='E'>Funcionário</option>";	
+		}
+		else {
+			echo "<option value='" . $result['tipoPerfil'] . "' selected>Funcionário</option>";	
+			echo "<option value='A'>Administrador</option>";
 		}
 	}
-	function checkProfileStatus($db) {
-		$id = $_GET['id'];
-		$query = odbc_exec($db, "SELECT usuarioAtivo FROM Usuario WHERE idUsuario = '$id'");
-		while($result = odbc_fetch_array($query)) {
-			if($result['usuarioAtivo'] == 1) {
-				echo "<input type='checkbox' name='status' checked>";				
-			}
-			else {
-				echo "<input type='checkbox' name='status'>";		
-			}
-		}
-		odbc_close($db);
+	function checkProfileStatus($status) {
+		if(is_numeric($_GET['id'])) $id = $_GET['id'];
+
+		if($status == 1) echo "<input type='checkbox' name='status' checked>";
+		else echo "<input type='checkbox' name='status'>"; 
 	}
 	
 	$msg = "";

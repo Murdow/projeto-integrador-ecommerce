@@ -26,7 +26,13 @@
 		}
 	}
 	function listCategories($db) {
-		$query = odbc_exec($db, "SELECT idCategoria, nomeCategoria, descCategoria FROM Categoria");
+		if(isset($_GET['searchByName'])) {
+			$name = $_GET['searchByName'];
+			$query = odbc_exec($db, "SELECT idCategoria, nomeCategoria, descCategoria FROM 
+				Categoria WHERE nomeCategoria LIKE '%$name%'");
+		}
+		else 
+			$query = odbc_exec($db, "SELECT idCategoria, nomeCategoria, descCategoria FROM Categoria");
 		return $query;
 	} 
 	include "index.tpl.php";

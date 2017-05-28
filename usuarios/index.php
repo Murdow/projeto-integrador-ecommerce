@@ -21,8 +21,21 @@
 		}		
 	}
 	function listUser($db) {
-		$query = odbc_exec($db, "SELECT idUsuario, nomeUsuario, tipoPerfil, usuarioAtivo FROM Usuario");
+		if(isset($_GET['searchByName'])) {
+			$name = $_GET['searchByName'];
+			$query = odbc_exec($db, "SELECT idUsuario, nomeUsuario, tipoPerfil, usuarioAtivo FROM Usuario WHERE nomeUsuario LIKE '%$name%'");
+		}
+		else
+			$query = odbc_exec($db, "SELECT idUsuario, nomeUsuario, tipoPerfil, usuarioAtivo FROM Usuario");
 		return $query;
 	} 
+	function checkStatus($status) {
+		if($status == 1) return "Ativo";
+		else return "Inativo";
+	}
+	function checkType($type) {
+		if($type == "A") return "Administrador";
+		else return "Funcionário";
+	}
 	include "users.tpl.php";
 ?>

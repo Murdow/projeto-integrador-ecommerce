@@ -1,129 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Insert</title>
 	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
-    
-    <style type="text/css">
-		* {
-			margin: 0;
-			padding: 0;
-		}
-		body {
-			background-color: #fff;
-			text-align: left;
-		}
-		#addNew, #delete {
-			color: #000;
-			background-color: #ddd;
-			border: solid 1px #aaa;
-			padding: .3px 0;
-			text-decoration: none;
-		}
-		form {
-			background-color: #fff;
-			border: solid 5px #000;
-			box-sizing: border-box;
-			margin: 0 auto;
-			padding: 20px;
-			width: 500px;
-		}
-		label {
-			color: #000;
-			font-weight: bold;
-		}
-		input {
-			background-color: #ddd;
-		}
-		input[type=file] {
-			color: #000;
-		}
-		textarea {
-			height: 400px;
-			width: 230px;
-		}
-		#prodName {
-			width: 70%;
-		}
-		#prodPrice, #prodDiscount {
-			width: 55px;
-		}
-		#prodQtd {
-			width: 25px;
-		}
-		#updateSuccess {
-			color: red;
-		}
-		p {		
-			margin-bottom: 10px;
-			padding-bottom: 10px;
-		}
-		.searchForm {
-			background-color: #000;
-		}
-		.id {
-			display: none;
-		}
-		#message {
-			color: red;
-			font-weight: bolder;
-			text-align: center;
-		}
+    <link rel="stylesheet" type="text/css" href="../formStyle.css">	
+    <style type="text/css">		
+		#imgContainer {
+			background: url('../../imagems/noImage.png') center no-repeat; 
+			background-size: cover;
+			border: solid 1px #69be28;
+			border-bottom: none;
+			max-width: 270px;
+			padding-bottom: 80%;
+			width: 100%;
+		}		
 	</style>
 </head>
 <body>
 
-	<?php  include("../../menu.in.php")?>
+	<?php include("../../menu.in.php"); ?>
     
-    <form method="POST" action="?save=true">
+    <form enctype="multipart/form-data" method="POST" action="?save=true" class="clearFix">
 		<p id="message"> <?php echo $msg; ?></p>
-		<p>
-			<label>Nome:</label>
-			<input type="text" id="prodName" name="prodName" placeholder="Digite o nome do produto">
-		</p>
-		<p>	
-			<label>Preço:</label>
-			<input type="text" id="prodPrice" name="prodPrice" placeholder="00.00">
-		</p>
-		<p>
-			<label>Descrição:</label>
-			<textarea type="text" id="prodDescription" name="prodDescription" placeholder="Descrição do produto"></textarea>
-		</p>
-		<p>
-			<label>Categoria:</label>
-			<select id="prodCategory" name="prodCategory">
-				<option>Selecione uma categoria</option>
-				<?php loadCatedories($db); ?>
-			</select>
-		</p>
-		<p>
-			<label>Imagem:</label>
-			<input type="file" id="prodImg" name="prodImg" accept="image/*">
-		</p>
-		<p>
-			<label>Estoque:</label>
-			<input type="text" id="prodQtd" name="prodQtd" value="0">
-		</p>
-		<p>
-			<label>Desconto:</label>
-			<input type="text" id="prodDiscount" name="prodDiscount" value="00.00">
-		</p>
-		<p>
-			<label>Status:</label>
-			<select id="prodStatus" name="prodStatus">
-				<option value="1">Ativo</option>
-				<option value="0">Inativo</option>
-			</select>
-		</p>
-		<p>
-			<label>Cadastrado por: <?php echo checkUserId($db, getSessionUserId()); ?></label>
-		</p>
-		<p>
-			<input type="submit" value="Salvar Produto">
-		</p>
+		<div id="textDataContainer">
+			<p>
+				<label for="prodName">Nome:</label><br>
+				<input type="text" id="prodName" name="prodName" required placeholder="Digite o nome do produto">
+			</p>
+			<div id="description">
+				<label for="prodDescription">Descrição:</label><br>
+				<textarea id="prodDescription" name="prodDescription" placeholder="Descrição do produto"></textarea>
+			</div>
+			<div id="valuesContainer">
+				<p>	
+					<label for="prodPrice">Preço:</label><br>
+					<input type="text" id="prodPrice" name="prodPrice" required placeholder="00.00">
+				</p>
+				<p>
+					<label for="prodDiscount">Desconto:</label><br>
+					<input type="text" id="prodDiscount" name="prodDiscount" required placeholder="00.00">
+				</p>
+				<p>
+					<label for="prodQtd">Estoque:</label><br>
+					<input type="text" id="prodQtd" name="prodQtd" required placeholder="0">
+				</p>
+				<p>
+					<label for="prodCategory">Categoria:</label><br>
+					<select id="prodCategory" name="prodCategory" required>
+						<?php loadCatedories($db); ?>
+					</select>
+				</p>					
+				<p>
+					<label for="prodStatus">Status:</label><br>
+					<select id="prodStatus" name="prodStatus">
+						<option value="1">Ativo</option>
+						<option value="0">Inativo</option>
+					</select>
+				</p>
+			</div>			
+			<div id="buttons">
+				<input type="submit" value="SALVAR">
+				<a href="../">CANCELAR</a>
+			</div>
+		</div>
+		<div id="imageUpdateContainer">
+			<p>
+				<label for="prodImg">Imagem</label><br>
+				<div id="imgContainer"></div>
+			
+			<p>				
+				<input type="file" id="prodImg" name="prodImg" accept="image/*" onchange="readImagesAndSetAsBackground(this.files)">
+				<input type="button" id="clearFile" value=" X " title="Excluir imagem selecionada">
+			</p>		
+		</div>
 	</form>
-	
+	<?php include("../../footer.tpl.php") ?>
+	<script src="js/imageDisplay.js"></script>
 </body>
 </html>

@@ -1,115 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
-    <style type="text/css">
-		form {
-			background-color: #fff;
-			box-sizing: border-box;
-			margin: 0 auto;
-			padding: 20px;
-			width: 500px;
-		}
-		label {
-			color: #000;
-			font-weight: bold;
-		}
-		input {
-			background-color: #ddd;
-		}
-		input[type=file] {
-			color: #000;
-		}
-		textarea {
-			height: 200px;
-			width: 230px;
-		}
-		#prodName {
-			width: 70%;
-		}
-		#prodPrice, #prodDiscount {
-			width: 55px;
-		}
-		#prodQtd {
-			width: 25px;
-		}
-		#updateSuccess {
-			color: red;
-		}
-		p {		
-			margin-bottom: 10px;
-			padding-bottom: 10px;
-		}
-		.searchForm {
-			background-color: #000;
-		}
-		.id {
-			display: none;
-		}
-		#message {
-			color: red;
-			font-weight: bolder;
-			text-align: center;
-		}
-	</style>
+    <link rel="stylesheet" type="text/css" href="../formStyle.css">	
 </head>
 <body>
 
-	<?php  include("../../menu.in.php")?>
+	<?php include("../../menu.in.php"); ?>
     
-    <form method="POST" action="?id=<?php echo $_GET['id']; ?>&update=true">
+    <form enctype="multipart/form-data" method="POST" action="?id=<?php echo $_GET['id']; ?>&update=true" class="clearFix">
 		<p id="message"> <?php echo $msg; ?></p>
 		<p>
 			<input class="id" type="hidden" name="prodID" value="<?php echo $result['idProduto']; ?>">
 		</p>
-		<p>
-			<label>Nome:</label>
-			<input type="text" id="prodName" name="prodName" value="<?php echo $result['nomeProduto']; ?>">
-		</p>
-		<p>	
-			<label>Preço:</label>
-			<input type="text" id="prodPrice" name="prodPrice" value="<?php echo str_replace(",", ".", number_format($result['precProduto'], 2, ',', ' ')); ?>">
-		</p>
-		<p>
-			<label>Descrição:</label>
-			<textarea type="text" id="prodDescription" name="prodDescription"><?php echo $result['descProduto']; ?></textarea>
-		</p>
-		<p>
-			<label>Categoria:</label>
-			<select id="prodCategory" name="prodCategory">
-				<?php loadFormCategories($db, $result['idCategoria']); ?>
-			</select>
-		</p>
-		<p>
-			<label>Imagem:</label>
-			<input type="file" id="prodImg" name="prodImg" accept="image/*">
-		</p>
-		<p>
-			<label>Estoque:</label>
-			<input type="text" id="prodQtd" name="prodQtd" value="<?php echo $result['qtdMinEstoque']; ?>">
-		</p>
-		<p>
-			<label>Desconto:</label>
-			<input type="text" id="prodDiscount" name="prodDiscount" value="<?php echo $result['descontoPromocao']; ?>">
-		</p>
-		<p>
-			<label>Status:</label>
-			<select id="prodStatus" name="prodStatus">
-				<option value="1">Ativo</option>
-				<option value="0">Inativo</option>
-			</select>
-		</p>
-		<p>
-			<label>Cadastrado por: <?php echo checkUserId($db, $result['idUsuario']); ?></label>
-		</p>
-		<p>
-			<input type="submit" value="Salvar Alterações">
-		</p>
-		<a href="produtos/">Back</a>
+		<div id="textDataContainer">
+			<p>
+				<label for="prodName">Nome</label><br>
+				<input type="text" id="prodName" name="prodName" required value="<?php echo utf8_encode($result['nomeProduto']); ?>">
+			</p>
+			<div id="description">
+				<label for="prodDescription">Descrição</label><br>
+				<textarea type="text" id="prodDescription" name="prodDescription"><?php echo utf8_encode($result['descProduto']); ?></textarea>
+			</div>
+			<div id="valuesContainer">
+				<p>	
+					<label for="prodPrice">Preço</label><br>
+					<input type="text" id="prodPrice" name="prodPrice" required value="<?php echo str_replace(",", ".", number_format($result['precProduto'], 2, ',', ' ')); ?>">
+				</p>
+				<p>
+					<label for="prodDiscount">Desconto</label><br>
+					<input type="text" id="prodDiscount" name="prodDiscount" value="<?php echo $result['descontoPromocao']; ?>">
+				</p>
+				<p>
+					<label for="prodQtd">Estoque</label><br>
+					<input type="text" id="prodQtd" name="prodQtd" value="<?php echo $result['qtdMinEstoque']; ?>">
+				</p>
+				<p>
+					<label for="prodCategory">Categoria</label><br>
+					<select id="prodCategory" name="prodCategory" required>
+						<?php loadFormCategories($db, $result['idCategoria']); ?>
+					</select>
+				</p>					
+				<p>
+					<label for="prodStatus">Status</label><br>
+					<select id="prodStatus" name="prodStatus">
+						<?php checkProfileStatus($result['ativoProduto']); ?>
+					</select>
+				</p>
+				<p id="userName">
+					<label>Cadastrado por: <?php echo checkUserId($db, $result['idUsuario']); ?></label>
+				</p>
+			</div>			
+			<div id="buttons">
+				<input type="submit" value="SALVAR">
+				<a href="../">CANCELAR</a>
+			</div>
+		</div>
+		<div id="imageUpdateContainer">
+			<p>
+				<label for="prodImg">Imagem</label>
+				<div id="imgContainer">
+					<?php if(!empty($result['imagem'])): ?>
+						<img id="currentImage" src="data:image/jpeg;base64,<?php $conteudo_base64 = base64_encode($result['imagem']); echo $conteudo_base64 ?>">
+					<?php endif; ?>
+				</div>
+			</p>
+			<p>				
+				<input type="file" id="prodImg" name="prodImg" accept="image/*" onchange="readImagesAndSetAsBackground(this.files)">
+				<input type="button" id="clearFile" value=" X " title="Excluir imagem selecionada">
+			</p>		
+		</div>
 	</form>
-	
+	<?php include("../../footer.tpl.php") ?>
+	<script src="js/editImageDisplay.js"></script>
 </body>
 </html>

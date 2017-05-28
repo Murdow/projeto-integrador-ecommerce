@@ -1,0 +1,76 @@
+#prodNavigation {
+	background-color: #002244;
+	box-sizing: border-box;
+	height: 60px;
+	margin-top: -20px;
+	padding: 10px 20px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+.searchForme form input[type=text]:focus, .subSearch select:focus{
+	border-bottom: solid 1px #69be28;
+}
+.searchForm1 {
+	background-color:#002244;
+	color:#69be28;
+	border-radius: 4px;
+	border:1px solid #69be28;
+	font-size:110%;
+	height: 35px;
+	width:94px;
+}
+.searchForm1:hover {
+	background-color:#69be28;
+	color:#002244;
+}
+
+.subSearch {
+	width:40%;
+	position:absolute;
+	right: 80px;
+	top: 10px;
+}
+.subSearch div{
+	border: 6px solid #002244;
+	background-color:#002244;
+	border-radius: 6px;
+	color:#fff;
+	display: inline-block;
+}
+.subSearch input, .subSearch select {
+	border:none;
+	background-color:#002244;
+	border-bottom: solid 1px #fff;
+	color: #fff;
+	outline: none;
+	font-size:105%;
+}
+#addNew {
+	float: right;
+	margin: 20px 70px 80px 0;
+}
+.searchByNameContainer {
+	position: absolute;
+	left: 80px;
+	top: 10px;
+	width: 45%;
+}
+.borderSearch {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+.borderSearch input[type=text] {
+	background: none;
+	border: none;
+	border-bottom: solid 1px #fff;
+	color: #fff;
+	font-size: 20px;
+	height: 32px;
+	width: 70%;
+}
+.borderSearch input[type=text]:focus {
+	outline: none;
+	border-bottom: solid 1px #69be28;
+}
