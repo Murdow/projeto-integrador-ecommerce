@@ -128,7 +128,6 @@
 }
 
 .subSearch {
-	width:40%;
 	position:absolute;
 	right: 80px;
 	top: 10px;
@@ -156,7 +155,7 @@
 	position: absolute;
 	left: 80px;
 	top: 10px;
-	width: 45%;
+	width: 35%;
 }
 .borderSearch {
 	padding: 0;
