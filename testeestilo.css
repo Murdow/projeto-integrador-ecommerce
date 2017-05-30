@@ -56,14 +56,13 @@
 	padding: 20px 0;
 	font-weight: bold;
 	text-align: center;
-	width: 200px;
-	border-bottom: solid 4px #69be28;	
+	width: 200px;	
+	border-bottom: solid 4px #69be28;
 }
 #productsControlNavigation ul li a:hover {
 	background-color: #002244;
 	border-bottom: solid 4px #a5acaf;
 	color: #69be28;
-	box-sizing:border-box;
 }
 #productsControlNavigation ul li:last-child {
 	float: right;
@@ -102,12 +101,12 @@
 }
 
 .subSearch {
-	width:40%;
-	float:right;
+	position:absolute;
 	right: 80px;
 	top: 10px;
 }
 .subSearch div{
+	border: 6px solid #002244;
 	background-color:#002244;
 	border-radius: 6px;
 	color:#fff;
@@ -129,7 +128,7 @@
 	position: absolute;
 	left: 80px;
 	top: 10px;
-	width: 45%;
+	width: 35%;
 }
 .borderSearch {
 	padding: 0;
@@ -151,8 +150,6 @@
 }
 
 /*FIM FORMULARIO DE PESQUISA DE PRODUTOS*/
-
-
 
 
 /*TABLE FOR SEARCH TEST*/
