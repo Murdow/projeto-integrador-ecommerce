@@ -147,10 +147,6 @@
 	outline: none;
 	font-size:105%;
 }
-#addNew {
-	float: right;
-	margin: 20px 70px 80px 0;
-}
 .searchByNameContainer {
 	position: absolute;
 	left: 80px;
@@ -211,7 +207,7 @@ tr:nth-child(odd) {
 }
 td, th {	
 	height: 85px;
-	padding: 0 40px;
+	padding: 0 10px;
 	text-align: left;
 }
 td {
@@ -261,8 +257,7 @@ tr:hover {
 		
 /*BOTÃO ADICIONAR NOVO REGISTRO*/
 #btnContainer {
-	margin-top: 20px;
-	padding-right: 60px;
+	padding: 20px 80px 0 0;
 	text-align: right;
 }
 #addNew {

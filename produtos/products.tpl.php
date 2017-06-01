@@ -40,7 +40,9 @@
     		</div>
     	</form>
 	</nav>
-	<a id="addNew" href="inserir/">Adicionar novo produto</a>
+	<div id="btnContainer">
+		<a id="addNew" href="inserir/">Adicionar novo produto</a>
+	</div>
 	<p id="actionMsg"><?php echo $msg; ?></p>
 	<table cellspacing='0'>
 		<tr>

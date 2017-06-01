@@ -9,7 +9,7 @@
 	<ul>
 		<li><a href="../../produtos/">PRODUTOS</a></li>
 		<li><a href="../../categorias/">CATEGORIAS</a></li>
-		<li><a href="../../usuarios/">USUARIOS</a></li>
+		<li><a href="../../usuarios/">USUÁRIOS</a></li>
 		<li><a href="../../login/?session=finish">Sair</a></li>
 	</ul>	
 </nav>
