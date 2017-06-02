@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Insert</title>
-	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
+	<link rel="stylesheet" type="text/css" href="../../css/testeestilo.css">
     <link rel="stylesheet" type="text/css" href="../formStyle.css">	
     <style type="text/css">		
 		#imgContainer {
@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<?php include("../../menu.in.php"); ?>
+	<?php include("../../layout/menu.in.php"); ?>
     
     <form enctype="multipart/form-data" method="POST" action="?save=true" class="clearFix">
 		<p id="message"> <?php echo $msg; ?></p>
@@ -76,7 +76,7 @@
 			</p>		
 		</div>
 	</form>
-	<?php include("../../footer.tpl.php") ?>
+	<?php include("../../layout/footer.tpl.php") ?>
 	<script src="js/imageDisplay.js"></script>
 </body>
 </html>

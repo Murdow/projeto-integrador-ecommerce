@@ -3,21 +3,21 @@
 <head>
 	<title>Cadastro Usuário</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../../testeestilo.css">
-	<link rel="stylesheet" type="text/css" href="../../userCatFormStyle.css">
+    <link rel="stylesheet" type="text/css" href="../../css/testeestilo.css">
+	<link rel="stylesheet" type="text/css" href="../../css/userCatFormStyle.css">
 	</head>
 <body>
-	<?php  include("../../menu.in.php"); ?>
+	<?php  include("../../layout/menu.in.php"); ?>
 	
     <form method="POST">
 	<h2>Criar Categoria</h2>
 		<p id="erroMsg"><?php echo $erro; ?></p>
 		<p>
-			<label>Nome:</label>
+			<label for="name">Nome:</label>
 			<input type="text" id="name" name="name" required >
 		</p>
 		<p id="description">	
-			<label>Descrição: </label>
+			<label for="description">Descrição: </label>
 			<textarea type="text" id="Description" name="Description"></textarea>
 		</p>
 		
@@ -26,6 +26,6 @@
 			<a id="btnBack" href="../">Cancelar</a>			
 		</p>
 	</form>
-	<?php include("../../footer.tpl.php") ?>
+	<?php include("../../layout/footer.tpl.php") ?>
 </body>
 </html>

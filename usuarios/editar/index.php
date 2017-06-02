@@ -36,15 +36,11 @@
 									"", 
 									$_POST['name']);
 			
-			$login = str_replace('"','',$_POST['login']);
-			$login = str_replace("'",'',$login);
-			$login = str_replace(';','',$login);
-			
+			$login = fieldValidation($_POST['login']);
+
 			//trata senha
-			$password = str_replace('"','',$_POST['password']);
-			$password = str_replace("'",'',$password);
-			$password = str_replace(';','',$password);
-			
+			$password = fieldValidation($_POST['senha']);
+
 			//trata perfil
 			$profile = 	$_POST['profile'] != 'A' 
 						&& $_POST['profile'] != 'E' 
@@ -66,7 +62,7 @@
 					   idUsuario = $id")) 
 			header("Location: ../../usuarios/?update=success");
 		else {
-			$msg = "Erro ao alterar produto!";
+			$msg = "Erro ao alterar usuário!";
 			odbc_close($db);
 		}
 	}

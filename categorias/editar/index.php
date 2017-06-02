@@ -3,7 +3,7 @@
 	if(!isset($_SESSION['user'])) header("Location: ../../login/");
 	
 	if(isset($_GET['id'])) {
-		$id = $_GET['id'];
+		if(is_numeric($_GET['id'])) $id = $_GET['id'];
 		$query = odbc_exec($db, "SELECT * FROM Categoria WHERE idCategoria = '$id'");
 		$result = odbc_fetch_array($query);
 	}

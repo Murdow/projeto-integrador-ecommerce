@@ -4,12 +4,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Editar Usuário</title>
-	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
-    <link rel="stylesheet" type="text/css" href="../../userCatFormStyle.css">
+	<link rel="stylesheet" type="text/css" href="../../css/testeestilo.css">
+    <link rel="stylesheet" type="text/css" href="../../css/userCatFormStyle.css">
 </head>
 <body>
 
-	<?php include("../../menu.in.php"); ?>
+	<?php include("../../layout/menu.in.php"); ?>
     
     <form method="POST" action="?id=<?php echo $_GET['id']; ?>&update=true">
 		<h2>Atualização dos dados</h2>
@@ -18,25 +18,25 @@
 			<input class="id" type="hidden" name="id" required value="<?php echo $result['idUsuario']; ?>">
 		</p>
 		<p>
-			<label>Nome:</label>
+			<label for="name">Nome:</label>
 			<input type="text" id="name" name="name" required value="<?php echo $result['nomeUsuario']; ?>">
 		</p>
 		<p>	
-			<label>login: </label>
+			<label for="login">login: </label>
 			<input type="text" id="login" name="login" required value="<?php echo $result['loginUsuario']; ?>">
 		</p>
 		<p>
-			<label>Senha: </label>
+			<label for="password">Senha: </label>
 			<input type="password" id="password" name="password" required value="">
 		</p>
 		<p>
-			<label>Perfil:	</label>
-			<select name="profile">
+			<label for="profileType">Perfil:	</label>
+			<select id="profileType" name="profile">
 				<?php checkProfileType($result['tipoPerfil']); ?>
 			</select>
 		</P>
 		<p>
-			<label>Ativo: </label>
+			<label for="status">Ativo: </label>
 			<?php checkProfileStatus($result['usuarioAtivo']); ?>
 		</p>
 		<p>
@@ -45,6 +45,6 @@
 		</p>
 		
 	</form>
-	<?php include("../../footer.tpl.php") ?>
+	<?php include("../../layout/footer.tpl.php") ?>
 </body>
 </html>

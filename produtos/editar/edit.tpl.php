@@ -4,12 +4,12 @@
 	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Dashboard</title>
-	<link rel="stylesheet" type="text/css" href="../../testeestilo.css">
+	<link rel="stylesheet" type="text/css" href="../../css/testeestilo.css">
     <link rel="stylesheet" type="text/css" href="../formStyle.css">	
 </head>
 <body>
 
-	<?php include("../../menu.in.php"); ?>
+	<?php include("../../layout/menu.in.php"); ?>
     
     <form enctype="multipart/form-data" method="POST" action="?id=<?php echo $_GET['id']; ?>&update=true" class="clearFix">
 		<p id="message"> <?php echo $msg; ?></p>
@@ -74,7 +74,7 @@
 			</p>		
 		</div>
 	</form>
-	<?php include("../../footer.tpl.php") ?>
+	<?php include("../../layout/footer.tpl.php") ?>
 	<script src="js/editImageDisplay.js"></script>
 </body>
 </html>

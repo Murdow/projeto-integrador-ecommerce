@@ -4,12 +4,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Usuários</title>
-	<link rel="stylesheet" type="text/css" href="../testeestilo.css">
+	<link rel="stylesheet" type="text/css" href="../css/testeestilo.css">
     <script src="https://use.fontawesome.com/11638b2227.js"></script>	
 </head>
 <body>
 
-	<?php include("../menu.php"); ?>
+	<?php include("../layout/menu.php"); ?>
 	<nav id="prodNavigation">
     	<form method="GET" id="searchForm">
     		<!--Search By Name-->
@@ -55,6 +55,6 @@
 				</tr>
 			<?php endwhile; odbc_close($db);?>
 	</table>
-	<?php include("../footer.tpl.php") ?>
+	<?php include("../layout/footer.tpl.php") ?>
 </body>
 </html>

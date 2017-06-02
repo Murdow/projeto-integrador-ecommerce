@@ -1,26 +1,26 @@
 @font-face {
       font-family: "asasa";
-      src: url("fonts/asasa.ttf") format("truetype");
+      src: url("../fonts/asasa.ttf") format("truetype");
 }
 @font-face {
       font-family: "HunDIN1451";
-      src: url("fonts/HunDIN1451.ttf") format("truetype");
+      src: url("../fonts/HunDIN1451.ttf") format("truetype");
 }
 @font-face {
       font-family: "lottepaperfang";
-      src: url("fonts/lottepaperfang.ttf") format("truetype");
+      src: url("../fonts/lottepaperfang.ttf") format("truetype");
 }
 @font-face {
       font-family: "onuava__";
-      src: url("fonts/onuava__.ttf") format("truetype");
+      src: url("../fonts/onuava__.ttf") format("truetype");
 }
 @font-face {
       font-family: "The Outbox St";
-      src: url("fonts/The Outbox St.ttf") format("truetype");
+      src: url("../fonts/The Outbox St.ttf") format("truetype");
 }
 @font-face {
       font-family: "Zoon Hoot";
-      src: url("fonts/Zoon Hoot.otf") format("truetype");
+      src: url("../fonts/Zoon Hoot.otf") format("truetype");
 }
 
 
@@ -54,7 +54,7 @@
 	width: 100px;
 }
 #pageHeader h2 {
-	background: url(imagems/avatar.jpg) left no-repeat;
+	background: url(../imagems/avatar.jpg) left no-repeat;
 	color: #69be28;
 	float: right;
 	font-size: 17px;
@@ -339,15 +339,15 @@ article {
 
 
 #esquerda {
-    background: url(imagems/estoque.jpg) no-repeat;
+    background: url(../imagems/estoque.jpg) no-repeat;
 }
 
 #meio {
-    background: url(imagems/categ.jpg) no-repeat;
+    background: url(../imagems/categ.jpg) no-repeat;
 }
 
 #direita {
-    background: url(imagems/user.jpg) no-repeat;
+    background: url(../imagems/user.jpg) no-repeat;
 }
 
 .fundo:hover{

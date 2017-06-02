@@ -6,9 +6,7 @@
 	$erro = "";
 	if(isset($_GET['error']) && $_GET['error'] == "true") $erro = "Usuário já existe!";
 	function newUser($db) {				
-		$login = str_replace('"','',$_POST['login']);
-		$login = str_replace("'",'',$login);
-		$login = str_replace(';','',$login);
+		$login = fieldValidation($_POST['login']);
 			
 		$query = odbc_exec($db, "SELECT loginUsuario FROM Usuario WHERE loginUsuario = '$login'");
 		$result = odbc_fetch_array($query);
@@ -21,9 +19,7 @@
 									"", 
 									$_POST['nome']);
 			
-			$password = str_replace('"','',$_POST['senha']);
-			$password = str_replace("'",'',$password);
-			$password = str_replace(';','',$password);
+			$password = fieldValidation($_POST['senha']);
 			
 			$perfil = 	$_POST['perfil'] != 'A' 
 						&& $_POST['perfil'] != 'E' 
