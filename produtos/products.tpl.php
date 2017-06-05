@@ -3,9 +3,10 @@
 <head>
 	<meta charset="utf-8" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <title>List</title>
+    <title>Produtos</title>
 	<link rel="stylesheet" type="text/css" href="../css/testeestilo.css">
 	<script src="https://use.fontawesome.com/11638b2227.js"></script>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	

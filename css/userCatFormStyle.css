@@ -13,7 +13,7 @@ textarea:focus {
 }
 form {
 	margin: 0 auto;
-	width: 30%;
+	width: 100%;
 }		
 form h2 {
 	background-color: #002244;
@@ -83,9 +83,9 @@ form input[type=submit]:hover {
 #btnBack {
 	background: none;
 	border: none;
-	border: solid 1px #69be28;
+	border: solid 1px #a5acaf;
 	border-radius: 5px;
-	color: #69be28;	
+	color: #a5acaf;	
 	float: right;
 	padding: 5px 10px;	
 	text-decoration: none;
@@ -96,4 +96,7 @@ form input[type=submit]:hover {
 }
 .noBg {
 	background: none;
+}
+@media only screen and (max-width: 1024) {
+	
 }

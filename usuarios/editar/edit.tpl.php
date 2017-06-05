@@ -6,6 +6,7 @@
     <title>Editar Usuário</title>
 	<link rel="stylesheet" type="text/css" href="../../css/testeestilo.css">
     <link rel="stylesheet" type="text/css" href="../../css/userCatFormStyle.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -19,11 +20,11 @@
 		</p>
 		<p>
 			<label for="name">Nome:</label>
-			<input type="text" id="name" name="name" required value="<?php echo $result['nomeUsuario']; ?>">
+			<input type="text" id="name" name="name" required value="<?php echo utf8_encode($result['nomeUsuario']); ?>">
 		</p>
 		<p>	
 			<label for="login">login: </label>
-			<input type="text" id="login" name="login" required value="<?php echo $result['loginUsuario']; ?>">
+			<input type="text" id="login" name="login" required value="<?php echo utf8_encode($result['loginUsuario']); ?>">
 		</p>
 		<p>
 			<label for="password">Senha: </label>

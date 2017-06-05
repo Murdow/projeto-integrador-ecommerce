@@ -153,3 +153,18 @@ input[type=file] {
 #imgContainer #currentImage {
 	width: 100%;
 }
+@media only screen and (max-width: 1150px) {
+	#valuesContainer {
+		margin-top: 10px;
+	}
+	#buttons {
+		position: inherit;
+		float: left;
+	}
+	#description {
+		width: 100%;
+	}
+	#prodDescription {
+		width: 100%;
+	}
+}

@@ -10,14 +10,12 @@
 			
 		$query = odbc_exec($db, "SELECT loginUsuario FROM Usuario WHERE loginUsuario = '$login'");
 		$result = odbc_fetch_array($query);
-
 		if(!empty($result['loginUsuario'])) {
 			header("Location: ?error=true");	
 		}
 		else {			
-			$nome = preg_replace(	"/[^a-zA-Z0-9 ]+/", 
-									"", 
-									$_POST['nome']);
+			$name = fieldValidation($_POST['nome']);
+			$name = utf8_decode($name);
 			
 			$password = fieldValidation($_POST['senha']);
 			
@@ -39,7 +37,7 @@
 								VALUES
 									('$login',
 									HASHBYTES('SHA1','$password'),
-									'$nome',
+									'$name',
 									'$perfil',
 									$ativo)")){
 				odbc_close($db);

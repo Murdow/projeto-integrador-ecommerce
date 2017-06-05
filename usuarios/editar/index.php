@@ -5,6 +5,7 @@
 
 	if(isset($_GET['id'])) {
 		if(is_numeric($_GET['id'])) $id = $_GET['id'];
+		else header("Location: ../../usuarios/?update=error");
 		$query = odbc_exec($db, "SELECT * FROM Usuario WHERE idUsuario = '$id'");
 		$result = odbc_fetch_array($query);
 	}
@@ -30,13 +31,14 @@
 	$msg = "";
 	//UPDATE
 	if((isset($_GET['update'])) && ($_GET['update'] == "true")) {			
-		if(is_numeric($_POST['id'])) $id = $_POST['id'];		
+		if(is_numeric($_POST['id'])) $id = $_POST['id'];
+		
 		//trata nome
-			$name = preg_replace(	"/[^a-zA-Z0-9 ]+/", 
-									"", 
-									$_POST['name']);
+			$name = fieldValidation($_POST['name']);
+			$name = utf8_decode($name);
 			
 			$login = fieldValidation($_POST['login']);
+			$login = utf8_decode($login);
 
 			//trata senha
 			$password = fieldValidation($_POST['senha']);

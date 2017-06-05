@@ -6,6 +6,7 @@
     <title>Insert</title>
 	<link rel="stylesheet" type="text/css" href="../../css/testeestilo.css">
     <link rel="stylesheet" type="text/css" href="../formStyle.css">	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">		
 		#imgContainer {
 			background: url('../../imagems/noImage.png') center no-repeat; 
@@ -59,11 +60,12 @@
 						<option value="0">Inativo</option>
 					</select>
 				</p>
+				<div id="buttons">
+					<input type="submit" value="SALVAR">
+					<a href="../">CANCELAR</a>
+				</div>
 			</div>			
-			<div id="buttons">
-				<input type="submit" value="SALVAR">
-				<a href="../">CANCELAR</a>
-			</div>
+			
 		</div>
 		<div id="imageUpdateContainer">
 			<p>

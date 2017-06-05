@@ -6,6 +6,7 @@
     <title>Usuários</title>
 	<link rel="stylesheet" type="text/css" href="../css/testeestilo.css">
     <script src="https://use.fontawesome.com/11638b2227.js"></script>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -15,7 +16,7 @@
     		<!--Search By Name-->
     		<div class="searchByNameContainer">
     			<div class="borderSearch">					
-					<input type="text" name="searchByName" placeholder="Digite o nome" value="<?php if(isset($_GET['searchByName']) && $_GET['searchByName'] != '') echo $_GET['searchByName']; ?>">	
+					<input type="text" name="searchByName" placeholder="Digite o nome do usuário" value="<?php if(isset($_GET['searchByName']) && $_GET['searchByName'] != '') echo $_GET['searchByName']; ?>">	
 					<input type="image" name="search" src="../imagems/searchIcon.png" alt="botão busca">
 				</div>				
     		</div>
@@ -30,7 +31,7 @@
 	</div>
    
 	<p id="actionMsg"><?php echo $msg; ?></p>
-	<table cellspacing='0'>
+	<table cellspacing='0' id="userTable">
 		<tr>
 			<th>Nome</th>
 			<th>Tipo</th>
@@ -43,7 +44,7 @@
 			while($result = odbc_fetch_array($query)):
 		?>
 				<tr>
-					<td class='textocell'><?php echo $result['nomeUsuario']; ?></td>
+					<td class='textocell'><?php echo utf8_encode($result['nomeUsuario']); ?></td>
 					<td class='textocell'><?php echo checkType($result['tipoPerfil']); ?></td>
 					<td class='textocell'><?php echo checkStatus($result['usuarioAtivo']); ?></td>
 					<td id='acoes'>

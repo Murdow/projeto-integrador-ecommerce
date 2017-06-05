@@ -6,6 +6,7 @@
     <title>Dashboard</title>
 	<link rel="stylesheet" type="text/css" href="../../css/testeestilo.css">
     <link rel="stylesheet" type="text/css" href="../formStyle.css">	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -53,11 +54,12 @@
 				<p id="userName">
 					<label>Cadastrado por: <?php echo checkUserId($db, $result['idUsuario']); ?></label>
 				</p>
+				<div id="buttons">
+					<input type="submit" value="SALVAR">
+					<a href="../">CANCELAR</a>
+				</div>
 			</div>			
-			<div id="buttons">
-				<input type="submit" value="SALVAR">
-				<a href="../">CANCELAR</a>
-			</div>
+			
 		</div>
 		<div id="imageUpdateContainer">
 			<p>

@@ -88,7 +88,6 @@
 }
 #productsControlNavigation ul li a:hover {
 	background-color: #002244;
-	border-bottom: solid 4px #a5acaf;
 	color: #69be28;
 }
 #productsControlNavigation ul li:last-child {
@@ -209,6 +208,7 @@ td, th {
 	height: 85px;
 	padding: 0 10px;
 	text-align: left;
+	width: 30%;
 }
 td {
 	border: solid .5px #ddd;
@@ -217,6 +217,7 @@ table td + td,
 table th + th
 {
     text-align: center;
+	width: 17.5%;
 }
 th {
 	background-color: #a5acaf;
@@ -228,6 +229,18 @@ th {
 }
 tr:hover {
 	border-bottom: solid 2px #a5acaf;
+}
+#categoryTable td, th {
+	width: 33.3%;
+}
+#categoryTable table td + td, #categoryTable table th + th {
+	width: 33.3%;
+}
+#userTable td, th {
+	width: 28%;
+}
+#userTable table td + td, #userTable table th + th {
+	width: 24%;
 }
 /*END TABLE FOR SEARCH TEST*/
 
@@ -372,4 +385,21 @@ footer p {
 }
 footer p:last-child {
 	margin-bottom: 0;
+}
+@media only screen and (max-width: 1150px) {
+	.searchByNameContainer {
+		display: block;
+		position: inherit;
+		width: 100%;
+	}
+	.subSearch {
+		display: block;
+		position:inherit;
+		margin-top: 20px;
+		width: 100%;
+	}
+	#prodNavigation {
+		background-color: #002244;
+		height: auto;
+	}
 }

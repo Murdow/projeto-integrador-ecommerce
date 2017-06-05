@@ -6,6 +6,7 @@
     <title>Categorias</title>
 	<link rel="stylesheet" type="text/css" href="../css/testeestilo.css">
 	<script src="https://use.fontawesome.com/11638b2227.js"></script>	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<?php  include("../layout/menu.php"); ?>
@@ -28,7 +29,7 @@
 	</div>
 	
 	<p id="actionMsg"><?php echo $msg; ?></p>
-	<table cellspacing='0'>
+	<table cellspacing='0' id="categoryTable">
 		<tr>
 			<th>Nome</th>
 			<th>Descrição</th>
